@@ -1,11 +1,11 @@
 import React from "react";
 
-const Login = () => {
+const SetsList = () => {
 	return (
 		<div>
-			Login
+			SetsList
 		</div>
 	);
 };
 
-export default Login;
+export default SetsList;
