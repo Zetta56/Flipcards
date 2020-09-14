@@ -1,18 +1,44 @@
 import React from "react";
+import {connect} from "react-redux"
 import {Link} from "react-router-dom";
+import {logout} from "../actions";
 
-const Header = () => {
+const Header = ({isLoggedIn, logout}) => {
+	const onLogoutClick = (e) => {
+		e.preventDefault();
+		logout();
+		if(process.env.REACT_APP_GOOGLE_CLIENTID && window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
+			window.gapi.auth2.getAuthInstance().signOut();
+		};
+	};
+
+	const renderAuth = () => {
+		if(isLoggedIn === null) {
+			return;
+		} else if(isLoggedIn) {
+			return <Link to="/" className="item" onClick={(e) => onLogoutClick(e)}>Logout</Link>
+		} else {
+			return (
+				<React.Fragment>
+					<Link to="/login" className="item">Login</Link>
+					<Link to="/register" className="item">Sign Up</Link>
+				</React.Fragment>
+			);
+		};
+	};
+
 	return (
-		<div className="ui secondary pointing menu">
+		<div className="ui inverted secondary pointing menu">
 			<div className="ui container">
 				<Link to="/sets" className="item">Flipcards</Link>
-				<div className="right menu">
-					<Link to="/login" className="item">Login</Link>
-					<Link to="/register" className="item">Register</Link>
-				</div>
+				<div className="right menu">{renderAuth()}</div>
 			</div>
 		</div>
 	);
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+	return {isLoggedIn: state.auth.isLoggedIn}
+};
+
+export default connect(mapStateToProps, {logout})(Header);

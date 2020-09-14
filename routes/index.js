@@ -5,9 +5,10 @@ const express = require("express"),
 	  OAuth2Client = require("google-auth-library").OAuth2Client,
 	  middleware = require("../middleware");
 	  User = require("../models/User");
+	  Token = require("../models/Token")
 
 router.post("/register", middleware.isNotLoggedIn, (req, res) => {
-	User.register(req.body.username, req.body.password, (err, newUser) => {
+	User.register({username: req.body.username}, req.body.password, (err, newUser) => {
 		if(err) {
 			res.status(409).json(err);
 		};

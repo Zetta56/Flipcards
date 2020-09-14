@@ -1,0 +1,59 @@
+/* Note: Has unique file name due to usage in multiple components */
+.ui.stackable.grid {
+	margin: 70px auto !important;
+}
+
+.ui.stackable.grid > .column {
+	margin: 0 auto;
+	padding: 40px 30px;
+}
+
+.column h2 {
+	letter-spacing: .1rem;
+	text-align: center;
+}
+
+.column .ui.form .googleLogin,
+.column .ui.form input,
+.column .ui.form .ui.button {
+	font-size: 17px;
+	height: 50px;
+	margin: 6px 5%;
+	width: 90%;
+}
+
+.column .googleLogin {
+	background: white url("/google-normal.png") no-repeat center;
+	border-radius: .28571429rem;
+	height: 45px;
+}
+
+.column .googleLogin:hover {
+	background: #eeeeee url("/google-hover.png") no-repeat center;
+}
+
+.ui.red.label {
+	position: absolute;
+	left: 5%;
+	font-size: 14px;
+	margin-top: 65px;
+}
+
+@media only screen and (min-width: 768px) {
+	.ui.stackable.grid {
+		width: 70%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.ui.one.column.stackable.grid > .column {
+		padding: 25px 0 !important;
+	}
+
+	.column .ui.form .googleLogin,
+	.column .ui.form input,
+	.column .ui.form .ui.button {
+		height: 46px;
+		margin: 5px 5%;
+	}
+}

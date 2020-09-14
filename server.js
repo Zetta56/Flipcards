@@ -21,8 +21,8 @@ const User = require("./models/User");
 const indexRoutes = require("./routes/index");
 
 //DB Config
-// mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/flipcards", {useNewUrlParser: true, useUnifiedTopology: true});
-// mongoose.set("useFindAndModify", false);
+mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/flipcards", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set("useFindAndModify", false);
 
 //App Config
 app.use(cors({credentials: true, origin: true}));
