@@ -16,7 +16,7 @@ const Header = ({isLoggedIn, logout}) => {
 		if(isLoggedIn === null) {
 			return;
 		} else if(isLoggedIn) {
-			return <Link to="/" className="item" onClick={(e) => onLogoutClick(e)}>Logout</Link>
+			return <Link to="#" className="item" onClick={(e) => onLogoutClick(e)}>Logout</Link>
 		} else {
 			return (
 				<React.Fragment>
@@ -28,9 +28,9 @@ const Header = ({isLoggedIn, logout}) => {
 	};
 
 	return (
-		<div className="ui inverted secondary pointing menu">
+		<div className="ui inverted secondary pointing menu" id="header">
 			<div className="ui container">
-				<Link to="/sets" className="item">Flipcards</Link>
+				<Link to="/" className="item">Flipcards</Link>
 				<div className="right menu">{renderAuth()}</div>
 			</div>
 		</div>

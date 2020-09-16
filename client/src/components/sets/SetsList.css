@@ -1,0 +1,89 @@
+#setsList {
+	margin-bottom: 50px;
+}
+
+.ui.green.button {
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+#setsList .ui.cards {
+	justify-content: center;
+}
+
+#setsList .setItem {
+	box-shadow: none;
+	margin: 20px 3%;
+}
+
+#setsList .setItem .content {
+	height: 350px;
+	padding: 20px 20px;
+}
+
+#setsList .setItem .header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 36px;
+	height: 80%;
+}
+
+#setsList .setItem .ui.button {
+	margin: 10px 5px 0 calc(50% - 66px);
+}
+
+#setsList .setItem .ellipsis.vertical.icon {
+	cursor: pointer;
+	font-size: 24px;
+	height: 40px;
+	line-height: 100%;
+}
+
+#setsList .setItem .ellipsis.vertical.icon:hover ~ .dropdown,
+#setsList .setItem .dropdown:hover {
+	display: block;
+}
+
+#setsList .setItem .dropdown {
+	position: absolute;
+	left: 77%;
+	bottom: -36px;
+	display: none;
+}
+
+#setsList .setItem .dropdown a {
+	display: block;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 8px 10px;
+}
+
+#setsList .setItem .dropdown a:not(:last-child) {
+	border-bottom: 1px solid lightgray;
+}
+
+@media only screen and (min-width: 1200px) {
+	#setsList .ui.cards {
+		justify-content: left;
+	}
+
+	#setsList .setItem {
+		width: 27%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#setsList .setItem {
+		width: 70%;
+	}
+
+	#setsList .setItem .ui.button {
+		margin-left: 30%;
+		width: 40%;
+	}
+
+	#setsList .setItem .dropdown {
+		left: 71%;
+	}
+}

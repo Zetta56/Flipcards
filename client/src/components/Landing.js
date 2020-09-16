@@ -1,11 +1,11 @@
 import React from "react";
 
-const SetsList = () => {
+const Landing = () => {
 	return (
 		<div>
-			SetsList
+			Landing
 		</div>
 	);
 };
 
-export default SetsList;
+export default Landing;

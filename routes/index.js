@@ -5,7 +5,7 @@ const express = require("express"),
 	  OAuth2Client = require("google-auth-library").OAuth2Client,
 	  middleware = require("../middleware");
 	  User = require("../models/User");
-	  Token = require("../models/Token")
+	  Token = require("../models/Token");
 
 router.post("/register", middleware.isNotLoggedIn, (req, res) => {
 	User.register({username: req.body.username}, req.body.password, (err, newUser) => {
@@ -44,7 +44,7 @@ router.post("/login", middleware.isNotLoggedIn, (req, res) => {
 		};
 
 		//Creates JWT
-		const refreshToken = jwt.sign({sub: currentUser._id}, process.env.REFRESH_KEY, {expiresIn: "1 week"});
+		const refreshToken = jwt.sign({sub: currentUser._id}, process.env.REFRESH_KEY, {expiresIn: "3 days"});
 		const accessToken = jwt.sign({sub: currentUser._id}, process.env.ACCESS_KEY, {expiresIn: "15min"});
 		await Token.create({token: refreshToken, userId: currentUser._id});
 		

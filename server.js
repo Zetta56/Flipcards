@@ -16,8 +16,10 @@ const express = require("express"),
 
 //Models
 const User = require("./models/User");
+const Set = require("./models/Set");
 
 //Routes
+const setRoutes = require("./routes/set");
 const indexRoutes = require("./routes/index");
 
 //DB Config
@@ -62,6 +64,7 @@ app.use((req, res, next) => {
 });
 
 //Run Routes
+app.use("/api/sets", setRoutes);
 app.use("/api", indexRoutes);
 app.use((req, res) => {
 	res.sendFile(path.join(__dirname, "./client/build/index.html"));

@@ -7,7 +7,7 @@ import "./UserForm.css";
 const Register = ({handleSubmit, createUser}) => {
 	const renderError = ({touched, error}) => {
 		if(touched && error) {
-			return <div className="ui red top pointing label">{error}</div>
+			return <div className="ui top pointing label">{error}</div>
 		};
 	};
 

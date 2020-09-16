@@ -22,7 +22,7 @@ const Login = ({handleSubmit, login}) => {
 	};
 
 	const renderInput = useCallback(({input, placeholder, inputType}) => {
-		return <input {...input} type={inputType} placeholder={placeholder} className="field" />
+		return <input {...input} type={inputType} placeholder={placeholder} />
 	}, []);
 	
 	return (

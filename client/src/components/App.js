@@ -6,9 +6,13 @@ import history from "../history";
 import {resetError, login, logout} from "../actions";
 import ProtectedRoute from "./ProtectedRoute";
 import Header from "./Header";
+import Landing from "./Landing";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
-import SetsList from "./sets/SetsList"
+import SetList from "./sets/SetList";
+import SetCreate from "./sets/SetCreate";
+import SetUpdate from "./sets/SetUpdate";
+import SetDelete from "./sets/SetDelete";
 import "./App.css";
 
 const App = ({error, resetError, login, logout}) => {
@@ -57,16 +61,18 @@ const App = ({error, resetError, login, logout}) => {
 	
 	return (
 		<Router history={history}>
+			{renderError()}
 			<Header />
-			<div id="mainContainer">
-				{renderError()}
-				<div className="ui container">
-					<Switch>
-						<ProtectedRoute path="/sets" exact component={SetsList}></ProtectedRoute>
-						<ProtectedRoute path="/register" exact component={Register}></ProtectedRoute>
-						<ProtectedRoute path="/login" exact component={Login}></ProtectedRoute>
-					</Switch>
-				</div>
+			<div className="ui main container">
+				<Switch>
+					<ProtectedRoute path="/" exact component={Landing}></ProtectedRoute>
+					<ProtectedRoute path="/register" exact component={Register}></ProtectedRoute>
+					<ProtectedRoute path="/login" exact component={Login}></ProtectedRoute>
+					<ProtectedRoute path="/sets" exact component={SetList} authenticate></ProtectedRoute>
+					<ProtectedRoute path="/sets/create" exact component={SetCreate} authenticate></ProtectedRoute>
+					<ProtectedRoute path="/sets/:setId/edit" exact component={SetUpdate} authenticate></ProtectedRoute>
+					<ProtectedRoute path="/sets/:setId/delete" exact component={SetDelete} authenticate></ProtectedRoute>
+				</Switch>
 			</div>
 		</Router>
 	);

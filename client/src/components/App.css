@@ -1,12 +1,15 @@
-
-#mainContainer > .ui.container {
+.ui.main.container {
 	padding-top: 40px;
 }
 
-.ui.inverted.secondary.pointing.menu {
+#header {
 	border: 0;
 	font-size: 18px;
 	letter-spacing: .12rem;
+}
+
+.icon:not(.plus) {
+	margin-right: 0 !important;
 }
 
 /*Colors*/
@@ -14,23 +17,58 @@ body {
 	background-color: #fa8072;	/*light-red*/
 }
 
-.ui.inverted.secondary.pointing.menu a,
-.ui.stackable.grid h2 {
-	color: white !important;	/*white*/
+.register .ui.label,
+#setDelete.ui.modal,
+#setDelete.ui.modal > * {
+	background-color: #e65550;		/*red*/
+}
+
+#setUpdate.ui.modal,
+#setUpdate.ui.modal > * {
+	background-color: #df994e;		/*light-orange*/
+}
+
+.ui.orange.button:not(:hover) {
+	background-color: #e07b26;		/*orange*/
 }
 
 .login {
 	background-color: #84b7df;		/*light-blue*/
 }
 
-.login .ui.submit.button {
+.ui.blue.button:not(:hover) {
 	background-color: #429bd8;		/*blue*/
 }
 
-.register {
-	background-color: #6fd57f;		/*light-green*/
+.register,
+#setsList .ui.green.button:not(:hover),
+#setCreate.ui.modal,
+#setCreate.ui.modal > * {
+	background-color: #55cb68;		/*light-green*/
 }
 
-.register .ui.submit.button {
-	background-color: #46c04f;		/*green*/
+.ui.green.button:not(:hover) {
+	background-color: #33b23c;		/*green*/
+}
+
+#header a,
+.login h2,
+.register h2,
+.register .ui.label,
+#setsList .plus.icon,
+#setsList .header,
+#setsList .ellipsis.vertical.icon,
+.modal .header,
+.modal .content,
+.modal label {
+	color: white !important;	/*white*/
+}
+
+#setsList .setItem .dropdown {
+	background-color: white;	/*white*/
+}
+
+#setsList .setItem .dropdown a,
+.ui.active.modal a {
+	color: #333333 !important;		/*black*/
 }
