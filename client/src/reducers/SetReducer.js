@@ -7,7 +7,7 @@ export default (state = [], action) => {
 		case "FETCH_SET":
 			return [...state.filter(set => set._id !== action.payload._id), action.payload];
 		case "UPDATE_SET":
-			return [...state.map(step => step._id === action.payload._id ? action.payload : step)];
+			return [...state.map(set => set._id === action.payload._id ? action.payload : set)];
 		case "DELETE_SET":
 			return [...state.filter(set => set._id !== action.payload)]
 		default:

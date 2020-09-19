@@ -2,9 +2,18 @@
 	margin-bottom: 50px;
 }
 
-.ui.green.button {
-	font-size: 16px;
-	margin-bottom: 20px;
+.create.card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 350px;
+}
+
+.create.card .ui.green.button {
+	position: absolute;
+	font-size: 24px;
+	padding: 18px;
+	width: 70%;
 }
 
 #setsList .ui.cards {
@@ -29,7 +38,7 @@
 	height: 80%;
 }
 
-#setsList .setItem .ui.button {
+#setsList .setItem .ui.blue.button {
 	margin: 10px 5px 0 calc(50% - 66px);
 }
 
@@ -78,12 +87,7 @@
 		width: 70%;
 	}
 
-	#setsList .setItem .ui.button {
-		margin-left: 30%;
-		width: 40%;
-	}
-
 	#setsList .setItem .dropdown {
-		left: 71%;
+		left: 66%;
 	}
 }

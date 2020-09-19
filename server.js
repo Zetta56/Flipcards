@@ -15,12 +15,14 @@ const express = require("express"),
 	  passportLocalMongoose = require("passport-local-mongoose");
 
 //Models
-const User = require("./models/User");
-const Set = require("./models/Set");
+const User = require("./models/User"),
+	  Set = require("./models/Set"),
+	  Card = require("./models/Card");
 
 //Routes
-const setRoutes = require("./routes/set");
-const indexRoutes = require("./routes/index");
+const setRoutes = require("./routes/set"),
+	  cardRoutes = require("./routes/card"),
+	  indexRoutes = require("./routes/index");
 
 //DB Config
 mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/flipcards", {useNewUrlParser: true, useUnifiedTopology: true});
@@ -65,6 +67,7 @@ app.use((req, res, next) => {
 
 //Run Routes
 app.use("/api/sets", setRoutes);
+app.use("/api/cards", cardRoutes);
 app.use("/api", indexRoutes);
 app.use((req, res) => {
 	res.sendFile(path.join(__dirname, "./client/build/index.html"));

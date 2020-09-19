@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchSets} from "../../actions";
-import "./SetList.css";
+import {fetchCards} from "../../actions";
+import "./CardList.css";
 
-const SetsList = ({sets, fetchSets}) => {
+const CardsList = ({sets, fetchCards, match}) => {
 	useEffect(() => {
-		fetchSets();
-	}, [fetchSets]);
+		fetchCards(match.params.setId);
+	}, [fetchCards, match.params.setId]);
 
 	const renderList = () => {
 		return sets.map(set => {
@@ -28,13 +28,8 @@ const SetsList = ({sets, fetchSets}) => {
 	};
 
 	return (
-		<div id="setsList">
-			<div className="ui cards">
-				{renderList()}
-				<div className="setItem create card">
-					<Link to="/sets/create" className="ui green button"><i className="plus icon" />Create</Link>
-				</div>
-			</div>
+		<div id="CardsList">
+			CardList
 		</div>
 	);
 };
@@ -43,4 +38,4 @@ const mapStateToProps = (state) => {
 	return {sets: state.sets};
 };
 
-export default connect(mapStateToProps, {fetchSets})(SetsList);
+export default connect(mapStateToProps, {fetchCards})(CardsList);

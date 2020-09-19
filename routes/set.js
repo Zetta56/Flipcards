@@ -5,8 +5,8 @@ const express = require("express"),
 
 router.get("/", async (req, res) => {
 	try {
-		const foundSet = await Set.find({creator: req.user._id});
-		res.json(foundSet);
+		const foundSets = await Set.find({creator: req.user._id});
+		res.json(foundSets);
 	} catch(err) {
 		res.status(500).json(err);
 	};
