@@ -18,13 +18,13 @@ body {
 }
 
 .register .ui.label,
-#setDelete.ui.modal,
-#setDelete.ui.modal > * {
+#modalDelete.ui.modal,
+#modalDelete.ui.modal > * {
 	background-color: #e65550;		/*red*/
 }
 
-#setUpdate.ui.modal,
-#setUpdate.ui.modal > * {
+#modalUpdate.ui.modal,
+#modalUpdate.ui.modal > * {
 	background-color: #df994e;		/*light-orange*/
 }
 
@@ -42,8 +42,8 @@ body {
 
 .register,
 #setsList .ui.green.button:not(:hover),
-#setCreate.ui.modal,
-#setCreate.ui.modal > * {
+#modalCreate.ui.modal,
+#modalCreate.ui.modal > * {
 	background-color: #59cf6c;		/*light-green*/
 }
 
@@ -66,10 +66,6 @@ body {
 
 #setsList .setItem .dropdown {
 	background-color: white;	/*white*/
-}
-
-#setsList .create.card {
-	background-color: #cccccc;		/*gray*/
 }
 
 #setsList .setItem .dropdown a,

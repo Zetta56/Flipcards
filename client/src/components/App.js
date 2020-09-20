@@ -14,6 +14,7 @@ import SetCreate from "./sets/SetCreate";
 import SetUpdate from "./sets/SetUpdate";
 import SetDelete from "./sets/SetDelete";
 import CardList from "./cards/CardList";
+import CardDelete from "./cards/CardDelete";
 import "./App.css";
 
 const App = ({error, resetError, login, logout}) => {
@@ -74,6 +75,7 @@ const App = ({error, resetError, login, logout}) => {
 					<ProtectedRoute path="/sets/:setId/edit" exact component={SetUpdate} authenticate></ProtectedRoute>
 					<ProtectedRoute path="/sets/:setId/delete" exact component={SetDelete} authenticate></ProtectedRoute>
 					<ProtectedRoute path="/sets/:setId" exact component={CardList} authenticate></ProtectedRoute>
+					<ProtectedRoute path="/sets/:setId/cards/delete" exact component={CardDelete} authenticate></ProtectedRoute>
 				</Switch>
 			</div>
 		</Router>

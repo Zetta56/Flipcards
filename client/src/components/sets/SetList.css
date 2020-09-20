@@ -2,27 +2,23 @@
 	margin-bottom: 50px;
 }
 
-.create.card {
+#setsList .ui.cards {
+	justify-content: left;
+}
+
+.ui.green.create.button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-size: 32px;
 	height: 350px;
-}
-
-.create.card .ui.green.button {
-	position: absolute;
-	font-size: 24px;
-	padding: 18px;
-	width: 70%;
-}
-
-#setsList .ui.cards {
-	justify-content: center;
+	line-height: 24px;
 }
 
 #setsList .setItem {
 	box-shadow: none;
 	margin: 20px 3%;
+	width: 27%;
 }
 
 #setsList .setItem .content {
@@ -72,17 +68,18 @@
 	border-bottom: 1px solid lightgray;
 }
 
-@media only screen and (min-width: 1200px) {
-	#setsList .ui.cards {
-		justify-content: left;
-	}
-
+@media only screen and (max-width: 1200px) {
 	#setsList .setItem {
-		width: 27%;
+		margin: 20px 5%;
+		width: 40%;
 	}
 }
 
 @media only screen and (max-width: 768px) {
+	#setsList .ui.cards {
+		justify-content: center;
+	}
+
 	#setsList .setItem {
 		width: 70%;
 	}

@@ -1,7 +1,8 @@
 const express = require("express"),
 	  router = express.Router(),
 	  middleware = require("../middleware"),
-	  Set = require("../models/Set");
+	  Set = require("../models/Set"),
+	  Card = require("../models/Card");
 
 router.get("/", async (req, res) => {
 	try {
@@ -46,6 +47,7 @@ router.put("/:setId", async (req, res) => {
 
 router.delete("/:setId", async (req, res) => {
 	try {
+		await Card.deleteMany({set: req.params.setId});
 		await Set.findByIdAndDelete(req.params.setId);
 		res.json(req.params.setId);
 	} catch(err) {

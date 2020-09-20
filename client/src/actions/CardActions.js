@@ -18,10 +18,10 @@ export const fetchCards = (setId) => {
 	};
 };
 
-export const createCard = (formValues, setId) => {
+export const createCard = (setId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.post("/api/cards", {...formValues, setId: setId});
+			const response = await axios.post("/api/cards", {setId: setId});
 
 			dispatch({
 				type: "CREATE_CARD",
@@ -66,13 +66,14 @@ export const updateCard = (formValues, setId, cardId) => {
 	};
 };
 
-export const deleteCard = (setId, cardId) => {
+//NOTE: CHANGE THIS TO POST WITH SCHEMA CHANGE
+export const deleteCards = (setId, cardIds) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.delete(`/api/cards/${cardId}`, {setId: setId});
+			const response = await axios.post("/api/cards", {setId: setId, cardIds: cardIds});
 			
 			dispatch({
-				type: "DELETE_CARD",
+				type: "DELETE_CARDS",
 				payload: response.data
 			});
 
@@ -81,5 +82,19 @@ export const deleteCard = (setId, cardId) => {
 			await history.push(`/sets/${setId}`);
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
+	};
+};
+
+export const selectCard = (cardId) => {
+	return {
+		type: "SELECT_CARD",
+		payload: cardId
+	};
+};
+
+export const deselectCard = (cardId) => {
+	return {
+		type: "DESELECT_CARD",
+		payload: cardId
 	};
 };

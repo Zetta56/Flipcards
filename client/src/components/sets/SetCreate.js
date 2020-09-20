@@ -31,7 +31,7 @@ const SetCreate = ({handleSubmit, createSet}) => {
 			header="Create New Set"
 			content={renderForm()}
 			onDismiss={() => history.push("/sets")}
-			id="setCreate" />
+			id="modalCreate" />
 	);
 };
 

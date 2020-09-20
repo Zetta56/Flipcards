@@ -35,7 +35,7 @@ const SetUpdate = ({match, handleSubmit, fetchSet, updateSet}) => {
 			header="Rename Set"
 			content={renderForm()}
 			onDismiss={() => history.push("/sets")}
-			id="setUpdate" />
+			id="modalUpdate" />
 	);
 };
 
@@ -45,12 +45,12 @@ const reduxWrapped = reduxForm({
 })(SetUpdate);
 
 const mapStateToProps = (state, ownProps) => {
-	let currentSet = null;
-	//Picks current set from array of all loaded sets
-	for(let i = 0; i < state.sets.length; i++) {
-		currentSet =  state.sets[i]._id === ownProps.match.params.setId ? state.sets[i] : currentSet;
+	const currentSet = state.sets.filter(set => set._id === ownProps.match.params.setId)[0]
+	if(currentSet) {
+		return {initialValues: {title: currentSet.title}};
+	} else {
+		return {};
 	};
-	return currentSet ? {initialValues: {title: currentSet.title}} : {};
 };
 
 

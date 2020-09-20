@@ -29,16 +29,12 @@ const SetDelete = ({set, fetchSet, deleteSet, match}) => {
 			content={`Are you sure you want to delete '${set.title}'?`}
 			actions={renderActions(set)}
 			onDismiss={() => history.push("/sets")}
-			id="setDelete" />
+			id="modalDelete" />
 	);
 };
 
 const mapStateToProps = (state, ownProps) => {
-	let currentSet = null;
-	for(let i = 0; i < state.sets.length; i++) {
-		currentSet =  state.sets[i]._id === ownProps.match.params.setId ? state.sets[i] : currentSet;
-	};
-	return {set: currentSet};
+	return {set: state.sets.filter(set => set._id === ownProps.match.params.setId)[0]};
 };
 
 export default connect(mapStateToProps, {fetchSet, deleteSet})(SetDelete);

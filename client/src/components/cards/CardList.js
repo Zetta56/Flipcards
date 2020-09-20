@@ -1,41 +1,72 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchCards} from "../../actions";
+import {fetchSet, fetchCards, createCard, deleteCards, selectCard, deselectCard} from "../../actions";
 import "./CardList.css";
 
-const CardsList = ({sets, fetchCards, match}) => {
+const CardsList = (props) => {
+	const {fetchSet, fetchCards, match} = props;
 	useEffect(() => {
+		fetchSet(match.params.setId);
 		fetchCards(match.params.setId);
-	}, [fetchCards, match.params.setId]);
+	}, [fetchSet, fetchCards, match]);
 
+	const onCheckboxChange = (cardId) => {
+		if(props.selectedCards.includes(cardId)) {
+			props.deselectCard(cardId);
+		} else {
+			props.selectCard(cardId);
+		};
+	};
+	
 	const renderList = () => {
-		return sets.map(set => {
+		return props.cards.map(card => {
 			return (
-				<div className="setItem card" style={{backgroundColor: set.color}} key={set._id}>
-					<div className="content">
-						<div className="header">{set.title}</div>
-						<Link to={`/sets/${set._id}`} className="ui huge blue button">Practice</Link>
-						<i className="ellipsis vertical icon" />
-						<div className="dropdown">
-							<Link to={`/sets/${set._id}/edit`}>Rename</Link>
-							<Link to={`/sets/${set._id}/delete`}>Delete</Link>
-						</div>
+				<div className="card" key={card._id}>
+					<div className="ui checkbox" onChange={() => onCheckboxChange(card._id)}>
+						<input type="checkbox" />
+						<label></label>
 					</div>
+					<div className="content">{card.front}</div>
 				</div>
 			);
 		});
 	};
 
+	if(!props.set) {
+		return null;
+	};
+
 	return (
-		<div id="CardsList">
-			CardList
+		<div id="cardsList">
+			<h1>{props.set.title}</h1>
+			<hr />
+			<button className="ui green button" onClick={() => props.createCard(props.match.params.setId)}>
+				<i className="plus icon" />Create
+			</button>
+			<Link to={`/sets/${props.set._id}/cards/delete`} className="ui red button">
+				<i className="trash icon" />
+			</Link>
+			<div className="ui cards">
+				{renderList()}
+			</div>
 		</div>
 	);
 };
 
-const mapStateToProps = (state) => {
-	return {sets: state.sets};
+const mapStateToProps = (state, ownProps) => {
+	return {
+		set: state.sets.filter(set => set._id === ownProps.match.params.setId)[0],
+		cards: state.cards,
+		selectedCards: state.selectedCards
+	};
 };
 
-export default connect(mapStateToProps, {fetchCards})(CardsList);
+export default connect(mapStateToProps, {
+	fetchSet,
+	fetchCards,
+	createCard,
+	deleteCards,
+	selectCard,
+	deselectCard
+})(CardsList);

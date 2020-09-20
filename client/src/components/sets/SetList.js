@@ -31,9 +31,9 @@ const SetsList = ({sets, fetchSets}) => {
 		<div id="setsList">
 			<div className="ui cards">
 				{renderList()}
-				<div className="setItem create card">
-					<Link to="/sets/create" className="ui green button"><i className="plus icon" />Create</Link>
-				</div>
+					<Link to="/sets/create" className="ui green create button setItem">
+						<i className="plus icon" />Create
+					</Link>
 			</div>
 		</div>
 	);

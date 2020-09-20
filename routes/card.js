@@ -43,13 +43,15 @@ router.put("/:cardId", async (req, res) => {
 	};
 });
 
-router.delete("/:cardId", async (req, res) => {
+router.post("/delete", async (req, res) => {
 	try {
 		const foundSet = await Set.findById(req.body.setId);
-		await foundSet.cards.pull(req.params.cardId);
+		req.body.cardIds.forEach(async (cardId) => {
+			await foundSet.cards.pull(cardId);
+			await Card.findByIdAndDelete(cardId);
+		});
 		await foundSet.save();
-		await Card.findByIdAndDelete(req.params.cardId);
-		res.json(req.params.cardId);
+		res.json(req.body.cardIds);
 	} catch(err) {
 		res.status(500).json(err);
 	};
