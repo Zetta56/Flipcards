@@ -60,7 +60,8 @@ body {
 #setsList .ellipsis.vertical.icon,
 .modal .header,
 .modal .content,
-.modal label {
+.modal label,
+#cardsList > h1 {
 	color: white !important;	/*white*/
 }
 

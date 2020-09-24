@@ -62,7 +62,9 @@ export const updateSet = (formValues, setId) => {
 				payload: response.data
 			});
 
-			history.push("/sets");
+			if(formValues.title) {
+				history.push("/sets");
+			};
 		} catch(err) {
 			await history.push("/sets");
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);

@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 
 //Run Routes
 app.use("/api/sets", setRoutes);
-app.use("/api/cards", cardRoutes);
+app.use("/api/sets/:setId/cards", cardRoutes);
 app.use("/api", indexRoutes);
 app.use((req, res) => {
 	res.sendFile(path.join(__dirname, "./client/build/index.html"));

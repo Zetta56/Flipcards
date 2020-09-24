@@ -38,7 +38,7 @@ router.get("/:setId", async (req, res) => {
 
 router.put("/:setId", async (req, res) => {
 	try {
-		const updatedSet = await Set.findByIdAndUpdate(req.params.setId, req.body);
+		const updatedSet = await Set.findByIdAndUpdate(req.params.setId, req.body, {new: true});
 		res.json(updatedSet);
 	} catch(err) {
 		res.status(500).json(err);

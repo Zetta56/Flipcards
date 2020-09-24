@@ -5,7 +5,7 @@ import history from "../history";
 export const fetchCards = (setId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.get("/api/cards", {params: {setId: setId}});
+			const response = await axios.get(`/api/sets/${setId}/cards`);
 			
 			dispatch({
 				type: "FETCH_CARDS",
@@ -21,7 +21,7 @@ export const fetchCards = (setId) => {
 export const createCard = (setId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.post("/api/cards", {setId: setId});
+			const response = await axios.post(`/api/sets/${setId}/cards`);
 
 			dispatch({
 				type: "CREATE_CARD",
@@ -37,7 +37,7 @@ export const createCard = (setId) => {
 export const fetchCard = (setId, cardId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.get(`/api/cards/${cardId}`);
+			const response = await axios.get(`/api/sets/${setId}/cards/${cardId}`);
 			
 			dispatch({
 				type: "FETCH_CARD",
@@ -53,7 +53,7 @@ export const fetchCard = (setId, cardId) => {
 export const updateCard = (formValues, setId, cardId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.put(`/api/cards/${cardId}`, formValues);
+			const response = await axios.put(`/api/sets/${setId}/cards/${cardId}`, formValues);
 
 			dispatch({
 				type: "UPDATE_CARD",
@@ -66,11 +66,10 @@ export const updateCard = (formValues, setId, cardId) => {
 	};
 };
 
-//NOTE: CHANGE THIS TO POST WITH SCHEMA CHANGE
-export const deleteCards = (setId, cardIds) => {
+export const deleteCards = (setId) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.post("/api/cards", {setId: setId, cardIds: cardIds});
+			const response = await axios.delete(`/api/sets/${setId}/cards`);
 			
 			dispatch({
 				type: "DELETE_CARDS",
@@ -82,19 +81,5 @@ export const deleteCards = (setId, cardIds) => {
 			await history.push(`/sets/${setId}`);
 			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
 		};
-	};
-};
-
-export const selectCard = (cardId) => {
-	return {
-		type: "SELECT_CARD",
-		payload: cardId
-	};
-};
-
-export const deselectCard = (cardId) => {
-	return {
-		type: "DESELECT_CARD",
-		payload: cardId
 	};
 };

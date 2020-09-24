@@ -1,12 +1,12 @@
 const express = require("express"),
-	  router = express.Router(),
+	  router = express.Router({mergeParams: true}),
 	  middleware = require("../middleware"),
 	  Set = require("../models/Set"),
 	  Card = require("../models/Card");
 
 router.get("/", async (req, res) => {
 	try {
-		const foundCard = await Card.find({set: req.query.setId});
+		const foundCard = await Card.find({set: req.params.setId});
 		res.json(foundCard);
 	} catch(err) {
 		res.status(500).json(err);
@@ -15,8 +15,8 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
 	try {
-		const newCard = await Card.create({front: "Side 1", back: "Side 2", set: req.body.setId});
-		const foundSet = await Set.findById(req.body.setId);
+		const newCard = await Card.create({front: "Side 1", back: "Side 2", set: req.params.setId});
+		const foundSet = await Set.findById(req.params.setId);
 		foundSet.cards.push(newCard._id);
 		foundSet.save();
 		res.json(newCard);
@@ -36,22 +36,23 @@ router.get("/:cardId", async (req, res) => {
 
 router.put("/:cardId", async (req, res) => {
 	try {
-		const updatedCard = await Card.findByIdAndUpdate(req.params.cardId, req.body);
+		const updatedCard = await Card.findByIdAndUpdate(req.params.cardId, req.body, {new: true});
 		res.json(updatedCard);
 	} catch(err) {
 		res.status(500).json(err);
 	};
 });
 
-router.post("/delete", async (req, res) => {
+router.delete("/", async (req, res) => {
 	try {
-		const foundSet = await Set.findById(req.body.setId);
-		req.body.cardIds.forEach(async (cardId) => {
-			await foundSet.cards.pull(cardId);
-			await Card.findByIdAndDelete(cardId);
+		const foundSet = await Set.findById(req.params.setId);
+		const foundCards = await Card.find({set: req.params.setId, selected: true});
+		foundCards.forEach(async (card) => {
+			await foundSet.cards.pull(card._id);
+			await card.remove();
 		});
 		await foundSet.save();
-		res.json(req.body.cardIds);
+		res.json(foundCards.map(card => card._id));
 	} catch(err) {
 		res.status(500).json(err);
 	};

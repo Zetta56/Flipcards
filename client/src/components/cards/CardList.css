@@ -1,3 +1,45 @@
+#cardsList {
+	padding: 30px;
+}
+
+#cardsList > h1 {
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 10px;
+}
+
+#cardsList > .topButtons {
+	margin: 20px 0;
+}
+
+.topButtons .ui.button {
+	font-size: 16px;
+	margin-right: 10px;
+}
+
+#cardsList .ui.cards > .card {
+	border: 0 !important;
+	font-size: 18px;
+	margin: 20px 1.6%;
+	text-align: center;
+	width: 30%;
+}
+
 .ui.checkbox {
 	position: absolute;
+	left: 10px;
+	top: calc(50% - 8px);
+}
+
+@media only screen and (max-width: 992px) {
+	#cardsList .ui.cards > .card {
+		width: 40%;
+		margin: 20px 5%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#cardsList .ui.cards > .card {
+		width: 90%;
+		margin: 20px 5%;
+	}
 }

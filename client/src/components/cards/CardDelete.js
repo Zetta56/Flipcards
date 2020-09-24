@@ -11,7 +11,7 @@ const SetDelete = ({selectedCards, deleteCards, match}) => {
 			<React.Fragment>
 				<button
 					className="ui red button"
-					onClick={() => deleteCards(match.params.setId, selectedCards)}
+					onClick={() => deleteCards(match.params.setId)}
 				>
 					Confirm
 				</button>
@@ -30,8 +30,4 @@ const SetDelete = ({selectedCards, deleteCards, match}) => {
 	);
 };
 
-const mapStateToProps = (state, ownProps) => {
-	return {selectedCards: state.selectedCards};
-};
-
-export default connect(mapStateToProps, {deleteCards})(SetDelete);
+export default connect(null, {deleteCards})(SetDelete);
