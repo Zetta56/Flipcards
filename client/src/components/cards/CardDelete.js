@@ -2,16 +2,21 @@ import React from "react";
 import {Link} from "react-router-dom"
 import {connect} from "react-redux";
 import history from "../../history";
-import {deleteCards} from "../../actions";
+import {updateSet, deleteCards} from "../../actions";
 import Modal from "../Modal";
 
-const SetDelete = ({selectedCards, deleteCards, match}) => {
+const SetDelete = ({selectedCards, updateSet, deleteCards, match}) => {
+	const onConfirmClick = () => {
+		updateSet({deletingCards: false}, match.params.setId);
+		deleteCards(match.params.setId);
+	};
+
 	const renderActions = () => {
 		return (
 			<React.Fragment>
 				<button
 					className="ui red button"
-					onClick={() => deleteCards(match.params.setId)}
+					onClick={() => onConfirmClick()}
 				>
 					Confirm
 				</button>
@@ -30,4 +35,4 @@ const SetDelete = ({selectedCards, deleteCards, match}) => {
 	);
 };
 
-export default connect(null, {deleteCards})(SetDelete);
+export default connect(null, {updateSet, deleteCards})(SetDelete);

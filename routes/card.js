@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
 	try {
-		const newCard = await Card.create({front: "Side 1", back: "Side 2", set: req.params.setId});
+		const newCard = await Card.create({front: "Front", back: "Back", set: req.params.setId});
 		const foundSet = await Set.findById(req.params.setId);
 		foundSet.cards.push(newCard._id);
 		foundSet.save();
