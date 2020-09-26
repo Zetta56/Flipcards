@@ -12,7 +12,15 @@
 	margin-right: 0 !important;
 }
 
+.rotate {
+	transform: rotateX(180deg);	
+}
+
 /*Colors*/
+#cardsList .ui.cards > .card {
+	background: transparent;	/*transparent*/
+}
+
 body {
 	background-color: #fa8072;	/*light-red*/
 }
@@ -65,7 +73,9 @@ body {
 	color: white !important;	/*white*/
 }
 
-#setsList .setItem .dropdown {
+#setsList .setItem .dropdown,
+#cardsList .front,
+#cardsList .back {
 	background-color: white;	/*white*/
 }
 

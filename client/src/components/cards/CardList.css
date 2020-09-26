@@ -7,7 +7,7 @@
 	padding-bottom: 10px;
 }
 
-#cardsList > .topButtons {
+.topButtons {
 	margin: 20px 0;
 }
 
@@ -16,12 +16,16 @@
 	margin-right: 10px;
 }
 
-#cardsList .ui.cards > .card {
+#cardsList .ui.cards {
+	align-items: center;
+}
+
+.ui.cards > .card {
+	box-shadow: none;
 	font-size: 20px;
-	height: max-content;
+	height: 200px;
 	line-height: 2rem;
 	margin: 20px 1.6%;
-	padding: 30px 35px;
 	text-align: center;
 	width: 30%;
 }
@@ -30,16 +34,53 @@
 	position: absolute;
 	left: 10px;
 	top: calc(50% - 8px);
+	z-index: 1;
+}
+
+.card .body {
+	height: 100%;
+	width: 100%;
+	transition: transform 700ms;
+	transform-style: preserve-3d;	/*calculates post-rotation position*/
+}
+
+.body .front,
+.body .back {
+	position: absolute;
+	backface-visibility: hidden;	/*hides flipped after-image*/
+	border-radius: .3rem;
+	padding: 30px 35px !important;
+	height: 100%;
+	width: 100%;
+}
+
+.body .back {
+	transform: rotateX(180deg);
 }
 
 div[contenteditable="true"] {
     word-wrap: break-word;
 }
 
+.body .ui.button {
+	position: absolute;
+	right: -3px;
+	top: 0;
+	padding: 6px 6px 6px 10px;
+}
+
+.body .exchange.icon {
+	font-size: 20px;
+}
+
 @media only screen and (max-width: 992px) {
 	#cardsList .ui.cards > .card {
 		width: 40%;
 		margin: 20px 5%;
+	}
+
+	.body .ui.button {
+		right: -4px;
 	}
 }
 
