@@ -12,7 +12,7 @@
 	margin-right: 0 !important;
 }
 
-.rotate {
+.flipped {
 	transform: rotateX(180deg);	
 }
 

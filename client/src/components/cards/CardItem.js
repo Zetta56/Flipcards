@@ -5,8 +5,15 @@ import {updateCard} from "../../actions";
 import "./CardList.css";
 
 const CardsItem = ({set, card, selectedCards, updateCard}) => {
+	const onEditableKeyPress = (e) => {
+		const acceptableKeys = [8, 37, 38, 39, 40];
+		if(e.target.textContent.length > 100 && !acceptableKeys.includes(e.which)) {
+			e.preventDefault();
+		};
+	};
+
 	const checkDisplay = set.deletingCards ? "inline-block" : "none",
-		  rotate = card.rotate ? "rotate" : "";
+		  flipped = card.flipped ? "flipped" : "";
 	
 	return (
 		<div className="card">
@@ -17,15 +24,16 @@ const CardsItem = ({set, card, selectedCards, updateCard}) => {
 					onChange={(e) => updateCard({selected: !card.selected}, set._id, card._id)} />
 				<label></label>
 			</div>
-			<div className={`${rotate} body`} onClick={(e) => e.stopPropagation()}>
+			<div className={`${flipped} body`} onClick={(e) => e.stopPropagation()}>
 				<div className="front">
 					<ContentEditable
 						html={card.front}
 						disabled={false}
-						onBlur={(e) => updateCard({front: e.target.textContent}, set._id, card._id)} />
+						onKeyPress={(e) => onEditableKeyPress(e)}
+						onBlur={(e) => updateCard({front: e.target.textContent || "Front"}, set._id, card._id)} />
 					<button
 						className="ui orange button"
-						onClick={() => updateCard({rotate: !card.rotate}, set._id, card._id)}
+						onClick={() => updateCard({flipped: !card.flipped}, set._id, card._id)}
 					>
 						<i className="exchange icon" />
 					</button>
@@ -34,10 +42,11 @@ const CardsItem = ({set, card, selectedCards, updateCard}) => {
 					<ContentEditable
 						html={card.back}
 						disabled={false}
-						onBlur={(e) => updateCard({back: e.target.textContent}, set._id, card._id)} />
+						onKeyPress={(e) => onEditableKeyPress(e)}
+						onBlur={(e) => updateCard({back: e.target.textContent || "Back"}, set._id, card._id)} />
 					<button
 						className="ui orange button"
-						onClick={() => updateCard({rotate: !card.rotate}, set._id, card._id)}
+						onClick={() => updateCard({flipped: !card.flipped}, set._id, card._id)}
 					>
 						<i className="exchange icon" />
 					</button>

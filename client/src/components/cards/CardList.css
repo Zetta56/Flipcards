@@ -20,7 +20,7 @@
 	align-items: center;
 }
 
-.ui.cards > .card {
+#cardsList .ui.cards > .card {
 	box-shadow: none;
 	font-size: 20px;
 	height: 200px;
@@ -47,9 +47,11 @@
 .body .front,
 .body .back {
 	position: absolute;
+	display: flex;
+	align-items: center;
 	backface-visibility: hidden;	/*hides flipped after-image*/
 	border-radius: .3rem;
-	padding: 30px 35px !important;
+	padding: 30px 35px;
 	height: 100%;
 	width: 100%;
 }
@@ -59,6 +61,7 @@
 }
 
 div[contenteditable="true"] {
+	width: 100%;
     word-wrap: break-word;
 }
 
@@ -73,7 +76,7 @@ div[contenteditable="true"] {
 	font-size: 20px;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1200px) {
 	#cardsList .ui.cards > .card {
 		width: 40%;
 		margin: 20px 5%;
@@ -84,9 +87,10 @@ div[contenteditable="true"] {
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
 	#cardsList .ui.cards > .card {
-		width: 90%;
+		height: 250px;
 		margin: 20px 5%;
+		width: 90%;
 	}
 }
