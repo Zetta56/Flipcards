@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux"
 import {Link} from "react-router-dom";
-import {logout} from "../actions";
+import {logout, fetchSets} from "../actions";
 
-const Header = ({isLoggedIn, logout}) => {
+const Header = ({isLoggedIn, sets, logout, fetchSets}) => {
+	useEffect(() => {
+		fetchSets();
+	}, [fetchSets]);
+
 	const onLogoutClick = (e) => {
 		e.preventDefault();
 		logout();
@@ -27,18 +31,38 @@ const Header = ({isLoggedIn, logout}) => {
 		};
 	};
 
+	const renderDropdown = () => {
+		if(isLoggedIn) {
+			const renderItems = () => {
+				return sets.map(set => {
+					return <Link to={`/sets/${set._id}`} className="item dropdownItem" key={set._id}>{set.title}</Link>
+				});
+			};
+
+			return (
+				<div className="ui simple dropdown item">
+					Sets
+					<div className="menu">{renderItems()}</div>
+				</div>
+			);
+		};
+	};
+
 	return (
 		<div className="ui inverted secondary pointing menu" id="header">
 			<div className="ui container">
 				<Link to="/" className="item">Flipcards</Link>
-				<div className="right menu">{renderAuth()}</div>
+				{renderDropdown()}
+				<div className="right menu">
+					{renderAuth()}
+				</div>
 			</div>
 		</div>
 	);
 };
 
 const mapStateToProps = (state) => {
-	return {isLoggedIn: state.auth.isLoggedIn}
+	return {isLoggedIn: state.auth.isLoggedIn, sets: state.sets}
 };
 
-export default connect(mapStateToProps, {logout})(Header);
+export default connect(mapStateToProps, {logout, fetchSets})(Header);

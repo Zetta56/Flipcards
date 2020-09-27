@@ -1,15 +1,14 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchSet, updateSet, fetchCards, createCard, deleteCards} from "../../actions";
+import {updateSet, fetchCards, createCard, deleteCards} from "../../actions";
 import CardItem from "./CardItem";
 import "./CardList.css";
 
 const CardsList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, deleteCards, match}) => {
 	useEffect(() => {
-		fetchSet(match.params.setId);
 		fetchCards(match.params.setId);
-	}, [fetchSet, fetchCards, match]);
+	}, [fetchCards, match]);
 	
 	const renderList = () => {
 		return cards.map(card => {
@@ -49,6 +48,7 @@ const CardsList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, del
 			<div className="ui cards">
 				{renderList()}
 			</div>
+			<Link to={`/sets/${set._id}/cards/practice`} className="ui huge blue button">Shuffle</Link>
 		</div>
 	);
 };
@@ -60,4 +60,4 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-export default connect(mapStateToProps, {fetchSet, updateSet, fetchCards, createCard, deleteCards})(CardsList);
+export default connect(mapStateToProps, {updateSet, fetchCards, createCard, deleteCards})(CardsList);

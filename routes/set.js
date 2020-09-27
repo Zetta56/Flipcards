@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
 	try {
-		const colors = ["#e65550", "#58bbe3", "#46d568", "#9e56dd", "#f5b134", "#e7607e", "#49d5c4", "#be7345"];
+		const colors = ["#e65550", "#58bbe3", "#46d568", "#9e56dd", "#e7607e", "#39c5b4", "#be7345"];
 		const newSet = await Set.create({
 			...req.body,
 			creator: req.user._id,

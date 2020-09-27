@@ -8,6 +8,14 @@
 	letter-spacing: .12rem;
 }
 
+#header .ui.container > .item:hover {
+	background-color: #ea7062 !important;
+}
+
+#header .menu {
+	margin-top: 0;
+}
+
 .icon:not(.plus) {
 	margin-right: 0 !important;
 }
@@ -59,7 +67,7 @@ body {
 	background-color: #33b23c;		/*green*/
 }
 
-#header a,
+#header a:not(.dropdownItem),
 .login h2,
 .register h2,
 .register .ui.label,
@@ -69,13 +77,11 @@ body {
 .modal .header,
 .modal .content,
 .modal label,
-#cardsList > h1 {
+#cardsList {
 	color: white !important;	/*white*/
 }
 
-#setsList .setItem .dropdown,
-#cardsList .front,
-#cardsList .back {
+#setsList .setItem .dropdown {
 	background-color: white;	/*white*/
 }
 

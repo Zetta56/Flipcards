@@ -16,6 +16,12 @@
 	margin-right: 10px;
 }
 
+.ui.blue.button {
+	display: block;
+	width: 150px;
+	margin: 0 0 0 auto;
+}
+
 #cardsList .ui.cards {
 	align-items: center;
 }
@@ -23,7 +29,7 @@
 #cardsList .ui.cards > .card {
 	box-shadow: none;
 	font-size: 20px;
-	height: 200px;
+	height: 230px;
 	line-height: 2rem;
 	margin: 20px 1.6%;
 	text-align: center;
