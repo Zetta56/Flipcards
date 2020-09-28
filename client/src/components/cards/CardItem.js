@@ -45,7 +45,7 @@ const CardsItem = ({set, card, selectedCards, updateCard}) => {
 					onChange={(e) => updateCard({selected: !card.selected}, set._id, card._id)} />
 				<label></label>
 			</div>
-			<div className={`${flipped} body`} onClick={(e) => e.stopPropagation()}>
+			<div className={`${flipped} flipCard`} onClick={(e) => e.stopPropagation()}>
 				{renderSide("front")}
 				{renderSide("back")}
 			</div>

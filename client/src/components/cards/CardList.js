@@ -19,7 +19,7 @@ const CardsList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, del
 	if(!set) {
 		return null;
 	};
-
+	
 	const deletingStyles = set.deletingCards
 		? {trashColor: "gray", checkDisplay: "inline-block"}
 		: {trashColor: "red", checkDisplay: "none"}

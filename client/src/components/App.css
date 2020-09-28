@@ -20,6 +20,42 @@
 	margin-right: 0 !important;
 }
 
+/*FlipCards*/
+.flipCard {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	transition: transform 700ms;
+	transform-style: preserve-3d;	/*calculates post-rotation position*/
+}
+
+.flipCard .front,
+.flipCard .back {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	backface-visibility: hidden;	/*hides flipped after-image*/
+	border-radius: .3rem;
+	padding: 30px 35px;
+	height: 100%;
+	width: 100%;
+}
+
+.flipCard .back {
+	transform: rotateX(180deg);
+}
+
+.flipCard .ui.button {
+	position: absolute;
+	right: -3px;
+	top: 0;
+	padding: 6px 6px 6px 10px;
+}
+
+.flipCard .exchange.icon {
+	font-size: 20px;
+}
+
 .flipped {
 	transform: rotateX(180deg);	
 }
@@ -78,12 +114,16 @@ body {
 .modal .content,
 .modal label,
 #cardsList,
-#cardsPractice {
+#cardSlides {
 	color: white !important;	/*white*/
 }
 
 #setsList .setItem .dropdown {
 	background-color: white;	/*white*/
+}
+
+#cardSlides .slide.last {
+	background-color: gray;	/*light-gray*/
 }
 
 #setsList .setItem .dropdown a,
