@@ -4,10 +4,27 @@ const express = require("express"),
 	  Set = require("../models/Set"),
 	  Card = require("../models/Card");
 
+router.get("/shuffle", async (req, res) => {
+	try {
+		const foundCards = await Card.find({set: req.params.setId});
+		let random, temp;
+		for(i = foundCards.length - 1; i >= 0; i--) {
+			//Swaps random card with last card (Fisher-Yates Shuffle)
+			random = Math.floor(Math.random() * foundCards.length);
+			temp = foundCards[random];
+			foundCards[random] = foundCards[i];
+			foundCards[i] = temp;
+		};
+		res.json(foundCards);
+	} catch(err) {
+		res.status(500).json(err);
+	};
+});
+
 router.get("/", async (req, res) => {
 	try {
-		const foundCard = await Card.find({set: req.params.setId});
-		res.json(foundCard);
+		const foundCards = await Card.find({set: req.params.setId});
+		res.json(foundCards);
 	} catch(err) {
 		res.status(500).json(err);
 	};

@@ -1,0 +1,14 @@
+#cardsPractice {
+	padding: 30px;
+}
+
+#cardsPractice > h1 {
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 10px;
+}
+
+#cardsPractice .ui.button {
+	font-size: 16px;
+	margin: 8px 0 20px 0;
+	padding: 10px 15px;
+}

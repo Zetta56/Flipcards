@@ -83,3 +83,19 @@ export const deleteCards = (setId) => {
 		};
 	};
 };
+
+export const shuffleCards = (setId) => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`/api/sets/${setId}/cards/shuffle`);
+			
+			dispatch({
+				type: "SHUFFLE_CARDS",
+				payload: response.data
+			});
+		} catch(err) {
+			await history.push(`/sets/${setId}`);
+			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+		};
+	};
+};

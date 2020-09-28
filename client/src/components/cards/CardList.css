@@ -16,10 +16,10 @@
 	margin-right: 10px;
 }
 
-.ui.blue.button {
+#cardsList .ui.blue.button {
 	display: block;
-	width: 150px;
-	margin: 0 0 0 auto;
+	width: 120px;
+	margin: 10px 1.5% 0 auto;
 }
 
 #cardsList .ui.cards {
@@ -83,6 +83,10 @@ div[contenteditable="true"] {
 }
 
 @media only screen and (max-width: 1200px) {
+	#cardsList .ui.blue.button {
+		margin-right: 4%;
+	}
+
 	#cardsList .ui.cards > .card {
 		width: 40%;
 		margin: 20px 5%;
@@ -96,7 +100,6 @@ div[contenteditable="true"] {
 @media only screen and (max-width: 992px) {
 	#cardsList .ui.cards > .card {
 		height: 250px;
-		margin: 20px 5%;
 		width: 90%;
 	}
 }

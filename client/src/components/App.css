@@ -77,7 +77,8 @@ body {
 .modal .header,
 .modal .content,
 .modal label,
-#cardsList {
+#cardsList,
+#cardsPractice {
 	color: white !important;	/*white*/
 }
 

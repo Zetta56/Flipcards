@@ -48,7 +48,7 @@ const CardsList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, del
 			<div className="ui cards">
 				{renderList()}
 			</div>
-			<Link to={`/sets/${set._id}/cards/practice`} className="ui huge blue button">Shuffle</Link>
+			<Link to={`/sets/${set._id}/cards/practice`} className="ui large blue button">Shuffle</Link>
 		</div>
 	);
 };
