@@ -7,14 +7,14 @@ import CardSlide from "./CardSlide";
 import "react-slideshow-image/dist/styles.css";
 import "./CardSlideshow.css";
 
-const CardSlideshow = ({cards, set, updateCard, shuffleCards, match}) => {
+const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, match}) => {
 	useEffect(() => {
 		shuffleCards(match.params.setId);
 	}, [shuffleCards, match]);
 
 	const renderSlideItems = () => {
 		const slides = cards.map(card => {
-			return <CardSlide card={card} set={set} key={card._id} />
+			return <CardSlide card={card} set={set} flippedItems={flippedItems} key={card._id} />
 		});
 		//Adds reshuffle slide to the end
 		slides.push(
@@ -48,7 +48,11 @@ const CardSlideshow = ({cards, set, updateCard, shuffleCards, match}) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-	return {cards: state.cards, set: state.sets.filter(set => set._id === ownProps.match.params.setId)[0]};
+	return {
+		cards: state.cards,
+		set: state.sets.filter(set => set._id === ownProps.match.params.setId)[0],
+		flippedItems: state.flipped
+	};
 };
 
 export default connect(mapStateToProps, {updateCard, shuffleCards})(CardSlideshow);

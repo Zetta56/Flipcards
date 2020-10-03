@@ -1,14 +1,14 @@
 import React, {useRef} from "react";
 import {connect} from "react-redux";
 import ContentEditable from "react-contenteditable";
-import {updateCard, flipCard} from "../../actions";
+import {updateCard, flipItem} from "../../actions";
 import "./CardList.css";
 
-const CardItem = ({set, card, selectedCards, updateCard, flipCard}) => {
+const CardItem = ({set, card, flippedItems, selectedCards, updateCard, flipItem}) => {
 	const colors = ["#f66560", "#68cbf3", "#56c578", "#ae66ed", "#f7708e", "#49d5c4", "#ce8355"],
 		  cardColor = useRef(colors[Math.floor(Math.random() * colors.length)]),
 		  checkDisplay = set.deletingCards ? "inline-block" : "none",
-		  flipped = card.flipped ? "flipped" : "";
+		  flipped = flippedItems.includes(card._id) ? "flipped" : "";
 
 	const onEditableKeyPress = (e) => {
 		const acceptableKeys = [8, 37, 38, 39, 40];
@@ -28,7 +28,7 @@ const CardItem = ({set, card, selectedCards, updateCard, flipCard}) => {
 					onBlur={(e) => updateCard({[side]: e.target.textContent || "Front"}, set._id, card._id)} />
 				<button
 					className="ui orange button"
-					onClick={() => flipCard(card._id)}
+					onClick={() => flipItem(card._id)}
 				>
 					<i className="exchange icon" />
 				</button>
@@ -53,4 +53,4 @@ const CardItem = ({set, card, selectedCards, updateCard, flipCard}) => {
 	);
 };
 
-export default connect(null, {updateCard, flipCard})(CardItem);
+export default connect(null, {updateCard, flipItem})(CardItem);

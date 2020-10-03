@@ -11,8 +11,6 @@ export default (state = [], action) => {
 			return [...state.map(card => card._id === action.payload._id ? action.payload : card)];
 		case "DELETE_CARDS":
 			return [...state.filter(set => !action.payload.includes(set))];
-		case "FLIP_CARD":
-			return [...state.map(card => card._id === action.payload ? {...card, flipped: !card.flipped} : card)];
 		default:
 			return state;
 	};

@@ -5,14 +5,14 @@ import {updateSet, fetchCards, createCard, deleteCards} from "../../actions";
 import CardItem from "./CardItem";
 import "./CardList.css";
 
-const CardList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, deleteCards, match}) => {
+const CardList = ({set, cards, flippedItems, fetchSet, updateSet, fetchCards, createCard, deleteCards, match}) => {
 	useEffect(() => {
 		fetchCards(match.params.setId);
 	}, [fetchCards, match]);
 	
 	const renderList = () => {
 		return cards.map(card => {
-			return <CardItem set={set} card={card} key={card._id} />
+			return <CardItem set={set} card={card} flippedItems={flippedItems} key={card._id} />
 		});
 	};
 
@@ -56,7 +56,8 @@ const CardList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, dele
 const mapStateToProps = (state, ownProps) => {
 	return {
 		set: state.sets.filter(set => set._id === ownProps.match.params.setId)[0],
-		cards: state.cards
+		cards: state.cards,
+		flippedItems: state.flipped
 	};
 };
 

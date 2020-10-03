@@ -3,7 +3,7 @@ import {Router, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 import axios from "axios"
 import history from "../history";
-import {resetError, login, logout} from "../actions";
+import {resetError, unflipItems, login, logout} from "../actions";
 import ProtectedRoute from "./ProtectedRoute";
 import Header from "./Header";
 import Landing from "./Landing";
@@ -18,7 +18,7 @@ import CardDelete from "./cards/CardDelete";
 import CardSlideshow from "./cards/CardSlideshow";
 import "./App.css";
 
-const App = ({error, resetError, login, logout}) => {
+const App = ({error, resetError, unflipItems, login, logout}) => {
 	useEffect(() => {
 		window.refreshCooldown = false;
 		window.setInterval(() => window.refreshCooldown = false, 180000);
@@ -53,8 +53,9 @@ const App = ({error, resetError, login, logout}) => {
 			if(error) {
 				resetError();
 			};
+			unflipItems();
 		});
-	}, [error, resetError, login, logout]);
+	}, [error, resetError, unflipItems, login, logout]);
 
 	const renderError = () => {
 		if(error) {
@@ -88,4 +89,4 @@ const mapStateToProps = (state) => {
 	return {error: state.error.message}
 };
 
-export default connect(mapStateToProps, {resetError, login, logout})(App);
+export default connect(mapStateToProps, {resetError, unflipItems, login, logout})(App);
