@@ -17,7 +17,7 @@
 }
 
 .icon:not(.plus) {
-	margin-right: 0 !important;
+	margin: 0 !important;
 }
 
 /*FlipCards*/
@@ -33,7 +33,9 @@
 .flipCard .back {
 	position: absolute;
 	display: flex;
+	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
 	backface-visibility: hidden;	/*hides flipped after-image*/
 	border-radius: .3rem;
 	padding: 30px 35px;
@@ -45,7 +47,7 @@
 	transform: rotateX(180deg);
 }
 
-.flipCard .ui.button {
+.flipCard .ui.orange.button {
 	position: absolute;
 	right: -3px;
 	top: 0;
@@ -61,6 +63,7 @@
 }
 
 /*Colors*/
+#setsList .card,
 #cardsList .ui.cards > .card {
 	background: transparent;	/*transparent*/
 }
@@ -109,7 +112,6 @@ body {
 .register .ui.label,
 #setsList .plus.icon,
 #setsList .header,
-#setsList .ellipsis.vertical.icon,
 .modal .header,
 .modal .content,
 .modal label,
@@ -118,7 +120,7 @@ body {
 	color: white !important;	/*white*/
 }
 
-#setsList .setItem .dropdown {
+.setItem .back .ui.button:not(:hover) {
 	background-color: white;	/*white*/
 }
 
@@ -126,7 +128,7 @@ body {
 	background-color: gray;	/*light-gray*/
 }
 
-#setsList .setItem .dropdown a,
+.setItem .back .icon,
 .ui.active.modal a {
 	color: #333333 !important;		/*black*/
 }

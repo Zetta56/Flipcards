@@ -89,3 +89,10 @@ export const deleteSet = (setId) => {
 		};
 	};
 };
+
+export const flipSet = (setId) => {
+	return {
+		type: "FLIP_SET",
+		payload: setId
+	};
+};

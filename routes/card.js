@@ -6,7 +6,6 @@ const express = require("express"),
 
 router.get("/shuffle", async (req, res) => {
 	try {
-		await Card.updateMany({set: req.params.setId}, {"$set": {flipped: false}});
 		const foundCards = await Card.find({set: req.params.setId});
 		let random, temp;
 		for(i = foundCards.length - 1; i >= 0; i--) {
@@ -24,7 +23,6 @@ router.get("/shuffle", async (req, res) => {
 
 router.get("/", async (req, res) => {
 	try {
-		await Card.updateMany({set: req.params.setId}, {"$set": {flipped: false}});
 		const foundCards = await Card.find({set: req.params.setId});
 		res.json(foundCards);
 	} catch(err) {

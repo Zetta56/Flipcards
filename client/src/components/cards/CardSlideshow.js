@@ -40,9 +40,8 @@ const CardSlideshow = ({cards, set, updateCard, shuffleCards, match}) => {
 				<div className="ui right pointing label">Tip: You can click a card to flip it</div>
 			</h1>
 			<Link to={`/sets/${set._id}`} className="ui button"><i className="angle left icon" />Back</Link>
-			<Slide autoplay={false} easing={"ease"} infinite={false}>
+			<Slide autoplay={false} infinite={false} easing={"ease"} transitionDuration={300}>
 				{renderSlideItems()}
-				
 			</Slide>
 		</div>
 	);

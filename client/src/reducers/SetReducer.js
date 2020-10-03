@@ -9,7 +9,9 @@ export default (state = [], action) => {
 		case "UPDATE_SET":
 			return [...state.map(set => set._id === action.payload._id ? action.payload : set)];
 		case "DELETE_SET":
-			return [...state.filter(set => set._id !== action.payload)]
+			return [...state.filter(set => set._id !== action.payload)];
+		case "FLIP_SET":
+			return [...state.map(set => set._id === action.payload ? {...set, flipped: !set.flipped} : set)];
 		default:
 			return state;
 	};

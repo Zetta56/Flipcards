@@ -38,14 +38,14 @@ const CardItem = ({set, card, selectedCards, updateCard, flipCard}) => {
 
 	return (
 		<div className="card">
-			<div className="ui checkbox" onClick={(e) => e.stopPropagation()} style={{display: checkDisplay}}>
+			<div className="ui checkbox" style={{display: checkDisplay}}>
 				<input 
 					type="checkbox"
 					checked={card.selected || false}
 					onChange={(e) => updateCard({selected: !card.selected}, set._id, card._id)} />
 				<label></label>
 			</div>
-			<div className={`${flipped} flipCard`} onClick={(e) => e.stopPropagation()}>
+			<div className={`${flipped} flipCard`}>
 				{renderSide("front")}
 				{renderSide("back")}
 			</div>
