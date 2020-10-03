@@ -5,7 +5,7 @@ import {updateSet, fetchCards, createCard, deleteCards} from "../../actions";
 import CardItem from "./CardItem";
 import "./CardList.css";
 
-const CardsList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, deleteCards, match}) => {
+const CardList = ({set, cards, fetchSet, updateSet, fetchCards, createCard, deleteCards, match}) => {
 	useEffect(() => {
 		fetchCards(match.params.setId);
 	}, [fetchCards, match]);
@@ -60,4 +60,4 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-export default connect(mapStateToProps, {updateSet, fetchCards, createCard, deleteCards})(CardsList);
+export default connect(mapStateToProps, {updateSet, fetchCards, createCard, deleteCards})(CardList);

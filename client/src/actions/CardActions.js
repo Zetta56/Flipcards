@@ -84,6 +84,13 @@ export const deleteCards = (setId) => {
 	};
 };
 
+export const flipCard = (cardId) => {
+	return {
+		type: "FLIP_CARD",
+		payload: cardId
+	};
+};
+
 export const shuffleCards = (setId) => {
 	return async (dispatch) => {
 		try {

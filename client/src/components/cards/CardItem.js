@@ -1,10 +1,10 @@
 import React, {useRef} from "react";
 import {connect} from "react-redux";
 import ContentEditable from "react-contenteditable";
-import {updateCard} from "../../actions";
+import {updateCard, flipCard} from "../../actions";
 import "./CardList.css";
 
-const CardsItem = ({set, card, selectedCards, updateCard}) => {
+const CardItem = ({set, card, selectedCards, updateCard, flipCard}) => {
 	const colors = ["#f66560", "#68cbf3", "#56c578", "#ae66ed", "#f7708e", "#49d5c4", "#ce8355"],
 		  cardColor = useRef(colors[Math.floor(Math.random() * colors.length)]),
 		  checkDisplay = set.deletingCards ? "inline-block" : "none",
@@ -28,7 +28,7 @@ const CardsItem = ({set, card, selectedCards, updateCard}) => {
 					onBlur={(e) => updateCard({[side]: e.target.textContent || "Front"}, set._id, card._id)} />
 				<button
 					className="ui orange button"
-					onClick={() => updateCard({flipped: !card.flipped}, set._id, card._id)}
+					onClick={() => flipCard(card._id)}
 				>
 					<i className="exchange icon" />
 				</button>
@@ -53,4 +53,4 @@ const CardsItem = ({set, card, selectedCards, updateCard}) => {
 	);
 };
 
-export default connect(null, {updateCard})(CardsItem);
+export default connect(null, {updateCard, flipCard})(CardItem);

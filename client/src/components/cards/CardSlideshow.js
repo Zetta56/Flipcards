@@ -5,9 +5,9 @@ import {Slide} from "react-slideshow-image";
 import {updateCard, shuffleCards} from "../../actions";
 import CardSlide from "./CardSlide";
 import "react-slideshow-image/dist/styles.css";
-import "./CardSlides.css";
+import "./CardSlideshow.css";
 
-const CardPractice = ({cards, set, updateCard, shuffleCards, match}) => {
+const CardSlideshow = ({cards, set, updateCard, shuffleCards, match}) => {
 	useEffect(() => {
 		shuffleCards(match.params.setId);
 	}, [shuffleCards, match]);
@@ -52,4 +52,4 @@ const mapStateToProps = (state, ownProps) => {
 	return {cards: state.cards, set: state.sets.filter(set => set._id === ownProps.match.params.setId)[0]};
 };
 
-export default connect(mapStateToProps, {updateCard, shuffleCards})(CardPractice);
+export default connect(mapStateToProps, {updateCard, shuffleCards})(CardSlideshow);

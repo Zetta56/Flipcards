@@ -5,7 +5,7 @@ import history from "../../history";
 import {updateSet, deleteCards} from "../../actions";
 import Modal from "../Modal";
 
-const SetDelete = ({selectedCards, updateSet, deleteCards, match}) => {
+const CardDelete = ({selectedCards, updateSet, deleteCards, match}) => {
 	const onConfirmClick = () => {
 		updateSet({deletingCards: false}, match.params.setId);
 		deleteCards(match.params.setId);
@@ -35,4 +35,4 @@ const SetDelete = ({selectedCards, updateSet, deleteCards, match}) => {
 	);
 };
 
-export default connect(null, {updateSet, deleteCards})(SetDelete);
+export default connect(null, {updateSet, deleteCards})(CardDelete);
