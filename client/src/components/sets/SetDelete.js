@@ -13,7 +13,9 @@ const SetDelete = ({set, fetchSet, deleteSet, match}) => {
 	const renderActions = (set) => {
 		return (
 			<React.Fragment>
-				<button className="ui red button" onClick={() => deleteSet(match.params.setId)}>Confirm</button>
+				<button className="ui red button" onClick={() => deleteSet(match.params.setId)}>
+					Confirm
+				</button>
 				<Link to="/sets" className="ui button">Cancel</Link>
 			</React.Fragment>
 		);

@@ -27,6 +27,7 @@ const setRoutes = require("./routes/set"),
 //DB Config
 mongoose.connect(process.env.DATABASEURL || "mongodb://localhost/flipcards", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set("useFindAndModify", false);
+mongoose.set('useCreateIndex', true);
 
 //App Config
 app.use(cors({credentials: true, origin: true}));

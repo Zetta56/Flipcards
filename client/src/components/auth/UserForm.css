@@ -1,20 +1,14 @@
 /* Note: Has unique file name due to usage in multiple components */
 .ui.stackable.grid {
-	margin: 70px auto !important;
+	margin: 100px auto !important;
 }
 
 .ui.stackable.grid > .column {
-	margin: 0 auto;
-	padding: 40px 30px;
+	padding: 60px 40px;
 }
 
 .column h2 {
 	letter-spacing: .1rem;
-	text-align: center;
-}
-
-.column .ui.form .field {
-	margin: 0;
 }
 
 .column .ui.form .googleLogin,
@@ -37,7 +31,6 @@
 }
 
 .ui.pointing.label {
-	position: absolute;
 	left: 5%;
 	font-size: 14px;
 	margin-top: 67px;

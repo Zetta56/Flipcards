@@ -2,10 +2,13 @@
 	padding-top: 40px;
 }
 
+/*Header*/
 #header {
+	position: relative;
 	border: 0;
 	font-size: 18px;
 	letter-spacing: .12rem;
+	z-index: 1;
 }
 
 #header .ui.container > .item:hover {
@@ -22,19 +25,14 @@
 
 /*FlipCards*/
 .flipCard {
+	cursor: pointer;
 	height: 100%;
 	width: 100%;
-	text-align: center;
 	transition: transform 700ms;
 	transform-style: preserve-3d;	/*calculates post-rotation position*/
 }
 
-.flipCard .front,
-.flipCard .back {
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.flipCard > * {
 	flex-wrap: wrap;
 	backface-visibility: hidden;	/*hides flipped after-image*/
 	border-radius: .3rem;
@@ -48,7 +46,6 @@
 }
 
 .flipCard .ui.orange.button {
-	position: absolute;
 	right: -3px;
 	top: 0;
 	padding: 6px 6px 6px 10px;
@@ -61,6 +58,37 @@
 .flipped {
 	transform: rotateX(180deg);	
 }
+
+/*Common Styles*/
+.flipCard > *,
+#setsList .ui.green.create.button,
+.setItem .back .ui.button,
+.slide.last  {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ui.stackable.grid > .column,
+.column .ui.form .field,
+.setItem .front .ui.blue.button,
+.react-slideshow-container {
+	margin: 0 auto;
+}
+
+.flipCard > *,
+.flipCard .ui.orange.button,
+.ui.pointing.label,
+.card .ui.checkbox {
+	position: absolute;
+}
+
+.flipCard,
+.column h2,
+.setItem .front .header {
+	text-align: center;
+}
+
 
 /*Colors*/
 #setsList .card,
@@ -87,8 +115,12 @@ body {
 	background-color: #e07b26;		/*orange*/
 }
 
+#landing .flipCard > * {
+	background-color: #f7708e;	/*pink*/
+}
+
 .login {
-	background-color: #6fb1e3;		/*light-blue*/
+	background-color: #58bbe3;		/*light-blue*/
 }
 
 .ui.blue.button:not(:hover) {
@@ -99,13 +131,14 @@ body {
 #setsList .ui.green.button:not(:hover),
 #modalCreate.ui.modal,
 #modalCreate.ui.modal > * {
-	background-color: #59cf6c;		/*light-green*/
+	background-color: #57dc77;		/*light-green*/
 }
 
 .ui.green.button:not(:hover) {
 	background-color: #33b23c;		/*green*/
 }
 
+#landing,
 #header a:not(.dropdownItem),
 .login h2,
 .register h2,
@@ -116,7 +149,7 @@ body {
 .modal .content,
 .modal label,
 #cardsList,
-#cardSlides {
+#cardSlideshow {
 	color: white !important;	/*white*/
 }
 
@@ -124,7 +157,7 @@ body {
 	background-color: white;	/*white*/
 }
 
-#cardSlides .slide.last {
+#cardSlideshow .slide.last {
 	background-color: gray;	/*light-gray*/
 }
 

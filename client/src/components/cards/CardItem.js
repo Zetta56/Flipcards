@@ -5,7 +5,8 @@ import {updateCard, flipItem} from "../../actions";
 import "./CardList.css";
 
 const CardItem = ({set, card, flippedItems, selectedCards, updateCard, flipItem}) => {
-	const colors = ["#f66560", "#68cbf3", "#56c578", "#ae66ed", "#f7708e", "#49d5c4", "#ce8355"],
+	// Red, blue, green, purple, pink, cyan
+	const colors = ["#f66560", "#68cbf3", "#56c578", "#ae66ed", "#f7708e", "#49d5c4", "#ffbe53"],
 		  cardColor = useRef(colors[Math.floor(Math.random() * colors.length)]),
 		  checkDisplay = set.deletingCards ? "inline-block" : "none",
 		  flipped = flippedItems.includes(card._id) ? "flipped" : "";
@@ -16,7 +17,7 @@ const CardItem = ({set, card, flippedItems, selectedCards, updateCard, flipItem}
 			e.preventDefault();
 		};
 	};
-
+// e99d43
 	const renderSide = (side) => {
 		return (
 			<div className={side} style={{backgroundColor: cardColor.current}}>

@@ -33,14 +33,10 @@ const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, matc
 	};
 
 	return (
-		<div id="cardSlides" style={{backgroundColor: set.color}}>
-			<h1>
-				{set.title}
-				<i className="question circle outline icon" />
-				<div className="ui right pointing label">Tip: You can click a card to flip it</div>
-			</h1>
+		<div id="cardSlideshow" style={{backgroundColor: set.color}}>
+			<h1>{set.title}</h1>
 			<Link to={`/sets/${set._id}`} className="ui button"><i className="angle left icon" />Back</Link>
-			<Slide autoplay={false} infinite={false} easing={"ease"} transitionDuration={300}>
+			<Slide autoplay={false} infinite={false} easing={"ease"} transitionDuration={250}>
 				{renderSlideItems()}
 			</Slide>
 		</div>

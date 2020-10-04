@@ -1,0 +1,59 @@
+#landing .flipCard {
+	height: 500px;
+	margin: 80px auto;
+	width: 90%;
+}
+
+#landing .front {
+	font-size: 56px;
+	letter-spacing: 4px;
+}
+
+#landing .back {
+	font-size: 36px;
+	letter-spacing: 2px;
+	line-height: 50px;
+}
+
+#landing .ui.blue.button {
+	margin-top: 30px;
+}
+
+@media only screen and (max-width: 992px) {
+	#landing .flipCard {
+		height: 400px;
+	}
+
+	#landing .front {
+		font-size: 48px;
+	}
+
+	#landing .back {
+		font-size: 28px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#landing .front {
+		font-size: 36px;
+	}
+
+	#landing .back {
+		font-size: 24px;
+		line-height: 35px;
+	}
+}
+
+/*Animations*/
+#landing {
+	animation: 500ms fadeIn;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

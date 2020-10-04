@@ -4,7 +4,6 @@ const setSchema = new mongoose.Schema({
 	title: String,
 	color: String,
 	deletingCards: {type: Boolean, default: false},
-	flipped: {type: Boolean, default: false},
 	cards: [
 		{
 			type: mongoose.Schema.Types.ObjectId,

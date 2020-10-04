@@ -1,40 +1,19 @@
-#cardSlides {
+#cardSlideshow {
 	padding: 30px;
 }
 
-#cardSlides > h1 {
+#cardSlideshow > h1 {
 	border-bottom: 1px solid lightgray;
 	padding-bottom: 10px;
 }
 
-#cardSlides > h1 .icon {
-	float: right;
-}
-
-#cardSlides > h1 .icon:hover ~ .label {
-	opacity: 1;
-}
-
-#cardSlides > h1 .label {
-	position: relative;
-	left: 0;
-	top: -75px;
-	float: right;
-	font-size: 16px;
-	line-height: 1.2em;
-	opacity: 0;
-	width: 150px;
-	transition: 200ms;
-}
-
-#cardSlides > .ui.button {
+#cardSlideshow > .ui.button {
 	font-size: 16px;
 	margin: 8px 0 20px 0;
 	padding: 10px 15px;
 }
 
 .react-slideshow-container {
-	margin: 0 auto;
 	width: 70%;
 }
 
@@ -50,12 +29,6 @@
 .slide .body {
 	width: 100%;
 	word-wrap: break-word;
-}
-
-.slide.last {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .slide.last .ui.button {
