@@ -27,7 +27,9 @@
 .setItem .front .header {
 	margin-top: 25%;
 	font-size: 36px;
+	line-height: 45px;
 	width: 100%;
+	word-wrap: break-word;
 }
 
 .setItem .back .ui.button {

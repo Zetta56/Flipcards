@@ -34,22 +34,6 @@ export const createCard = (setId) => {
 	};
 };
 
-export const fetchCard = (setId, cardId) => {
-	return async (dispatch) => {
-		try {
-			const response = await axios.get(`/api/sets/${setId}/cards/${cardId}`);
-			
-			dispatch({
-				type: "FETCH_CARD",
-				payload: response.data
-			});
-		} catch(err) {
-			await history.push(`/sets/${setId}`);
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
-		};
-	};
-};
-
 export const updateCard = (formValues, setId, cardId) => {
 	return async (dispatch) => {
 		try {
@@ -84,10 +68,10 @@ export const deleteCards = (setId) => {
 	};
 };
 
-export const shuffleCards = (setId) => {
+export const shuffleCards = (setId, lastShuffle) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.get(`/api/sets/${setId}/cards/shuffle`);
+			const response = await axios.post(`/api/sets/${setId}/cards/shuffle`, lastShuffle || []);
 			
 			dispatch({
 				type: "SHUFFLE_CARDS",

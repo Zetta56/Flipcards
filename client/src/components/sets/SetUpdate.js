@@ -11,11 +11,18 @@ const SetUpdate = ({match, handleSubmit, fetchSet, updateSet}) => {
 		fetchSet(match.params.setId);
 	}, [fetchSet, match.params.setId]);
 
+	const onInputKeyPress = (e) => {
+		const acceptableKeys = [8, 37, 38, 39, 40];
+		if(e.target.value.length > 30 && !acceptableKeys.includes(e.which)) {
+			e.preventDefault();
+		};
+	};
+
 	const renderInput = useCallback(({input}) => {
 		return (
 			<React.Fragment>
 				<label>Title</label>
-				<input {...input} type="text" placeholder="Title" required />
+				<input {...input} type="text" onKeyPress={(e) => onInputKeyPress(e)} placeholder="Title" required />
 			</React.Fragment>
 		);
 	}, []);

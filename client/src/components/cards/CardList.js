@@ -9,6 +9,12 @@ const CardList = ({set, cards, flippedItems, fetchSet, updateSet, fetchCards, cr
 	useEffect(() => {
 		fetchCards(match.params.setId);
 	}, [fetchCards, match]);
+
+	const renderShuffle = () => {
+		if(cards.length > 0) {
+			return <Link to={`/sets/${set._id}/cards/practice`} className="ui large blue button">Shuffle</Link>
+		};
+	};
 	
 	const renderList = () => {
 		return cards.map(card => {
@@ -48,7 +54,7 @@ const CardList = ({set, cards, flippedItems, fetchSet, updateSet, fetchCards, cr
 			<div className="ui cards">
 				{renderList()}
 			</div>
-			<Link to={`/sets/${set._id}/cards/practice`} className="ui large blue button">Shuffle</Link>
+			{renderShuffle()}
 		</div>
 	);
 };

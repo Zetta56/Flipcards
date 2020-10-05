@@ -17,7 +17,7 @@ const CardItem = ({set, card, flippedItems, selectedCards, updateCard, flipItem}
 			e.preventDefault();
 		};
 	};
-// e99d43
+
 	const renderSide = (side) => {
 		return (
 			<div className={side} style={{backgroundColor: cardColor.current}}>

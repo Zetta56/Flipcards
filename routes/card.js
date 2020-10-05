@@ -4,19 +4,30 @@ const express = require("express"),
 	  Set = require("../models/Set"),
 	  Card = require("../models/Card");
 
-router.get("/shuffle", async (req, res) => {
+router.post("/shuffle", async (req, res) => {
 	try {
 		const foundCards = await Card.find({set: req.params.setId});
-		let random, temp;
-		for(i = foundCards.length - 1; i >= 0; i--) {
+		let random,
+			temp, 
+			diff = false;
+		while(!diff) {
 			//Swaps random card with last card (Fisher-Yates Shuffle)
-			random = Math.floor(Math.random() * foundCards.length);
-			temp = foundCards[random];
-			foundCards[random] = foundCards[i];
-			foundCards[i] = temp;
+			for(i = foundCards.length - 1; i >= 0; i--) {
+				random = Math.floor(Math.random() * foundCards.length);
+				temp = foundCards[random];
+				foundCards[random] = foundCards[i];
+				foundCards[i] = temp;
+			};
+			//Checks if randomized list is different from previous list
+			for(i = 0; i < foundCards.length; i++) {
+				if(req.body.length <= 1 || (req.body && req.body[0] && !foundCards[0]._id.equals(req.body[0]._id))) {
+					diff = true;
+				};
+			};
 		};
 		res.json(foundCards);
 	} catch(err) {
+		console.log(err)
 		res.status(500).json(err);
 	};
 });

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Slide} from "react-slideshow-image";
@@ -8,9 +8,16 @@ import "react-slideshow-image/dist/styles.css";
 import "./CardSlideshow.css";
 
 const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, match}) => {
+	const slidesRef = useRef(null);
+
 	useEffect(() => {
 		shuffleCards(match.params.setId);
 	}, [shuffleCards, match]);
+
+	const onReshuffleClick = () => {
+		shuffleCards(match.params.setId, cards);
+		slidesRef.current.goTo(0);
+	};
 
 	const renderSlideItems = () => {
 		const slides = cards.map(card => {
@@ -21,7 +28,7 @@ const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, matc
 			<div className="slide last" key="lastSlide">
 				<div>
 					<span>You are done!</span>
-					<button className="ui blue button">Reshuffle?</button>
+					<button className="ui blue button" onClick={() => onReshuffleClick()}>Reshuffle?</button>
 				</div>
 			</div>
 		);
@@ -36,7 +43,7 @@ const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, matc
 		<div id="cardSlideshow" style={{backgroundColor: set.color}}>
 			<h1>{set.title}</h1>
 			<Link to={`/sets/${set._id}`} className="ui button"><i className="angle left icon" />Back</Link>
-			<Slide autoplay={false} infinite={false} easing={"ease"} transitionDuration={250}>
+			<Slide ref={slidesRef} autoplay={false} infinite={false} easing={"ease"} transitionDuration={250}>
 				{renderSlideItems()}
 			</Slide>
 		</div>
