@@ -1,11 +1,14 @@
 import axios from "axios";
 import {error} from "./ErrorActions";
+import {unflipItems} from "./FlipActions";
 import history from "../history";
 
 export const fetchSets = () => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.get("/api/sets");
+
+			dispatch(unflipItems());
 
 			dispatch({
 				type: "FETCH_SETS",

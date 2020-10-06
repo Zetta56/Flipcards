@@ -11,7 +11,7 @@
 	letter-spacing: .1rem;
 }
 
-.column .ui.form .googleLogin,
+.column .googleLogin,
 .column .ui.form input,
 .column .ui.form .ui.button {
 	font-size: 17px;

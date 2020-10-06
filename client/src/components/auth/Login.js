@@ -4,9 +4,9 @@ import {connect} from "react-redux";
 import {login} from "../../actions";
 import "./UserForm.css";
 
-const Login = ({handleSubmit, login}) => {
+const Login = ({handleSubmit, login, match}) => {
 	const renderGoogle = () => {
-		if(process.env.REACT_APP_GOOGLE_CLIENTID && this.props.match && this.props.match.path === "/login") {
+		if(process.env.REACT_APP_GOOGLE_CLIENTID && match && match.path === "/login") {
 			const onGoogleClick = async () => {
 				await window.gapi.auth2.getAuthInstance().signIn();
 				login({googleToken: window.gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token});

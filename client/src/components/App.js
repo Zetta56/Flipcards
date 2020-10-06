@@ -53,7 +53,6 @@ const App = ({error, resetError, unflipItems, login, logout}) => {
 			if(error) {
 				resetError();
 			};
-			unflipItems();
 		});
 	}, [error, resetError, unflipItems, login, logout]);
 

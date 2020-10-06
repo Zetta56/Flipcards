@@ -1,5 +1,6 @@
 import axios from "axios";
 import {error} from "./ErrorActions";
+import {unflipItems} from "./FlipActions";
 import history from "../history";
 
 export const fetchCards = (setId) => {
@@ -7,6 +8,8 @@ export const fetchCards = (setId) => {
 		try {
 			const response = await axios.get(`/api/sets/${setId}/cards`);
 			
+			dispatch(unflipItems());
+
 			dispatch({
 				type: "FETCH_CARDS",
 				payload: response.data

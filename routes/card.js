@@ -3,7 +3,7 @@ const express = require("express"),
 	  middleware = require("../middleware"),
 	  Set = require("../models/Set"),
 	  Card = require("../models/Card");
-//note: move diff check and change random max
+
 router.post("/shuffle", async (req, res) => {
 	try {
 		const foundCards = await Card.find({set: req.params.setId});

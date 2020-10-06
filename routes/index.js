@@ -28,7 +28,7 @@ router.post("/login", middleware.isNotLoggedIn, (req, res) => {
 					idToken: req.body.googleToken,
 					audience: process.env.GOOGLE_CLIENTID
 				});
-				//Note: ticket.getPayload().sub represents google id
+				//ticket.getPayload().sub represents google id
 				const foundUser = await User.findOne({googleId: ticket.getPayload().sub});
 				currentUser = foundUser ? foundUser : await User.create({googleId: ticket.getPayload().sub});
 			} catch(err) {
