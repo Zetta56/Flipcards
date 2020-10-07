@@ -1,14 +1,23 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {updateSet, fetchCards, createCard, deleteCards} from "../../actions";
+import {updateSet, toggleCardsDeletion, fetchCards, updateCard, createCard, deleteCards} from "../../actions";
 import CardItem from "./CardItem";
 import "./CardList.css";
 
-const CardList = ({set, cards, flippedItems, fetchSet, updateSet, fetchCards, createCard, deleteCards, match}) => {
+const CardList = ({set, cards, flippedItems, updateSet, toggleCardsDeletion, fetchCards, createCard, updateCard, deleteCards, match}) => {
 	useEffect(() => {
 		fetchCards(match.params.setId);
 	}, [fetchCards, match]);
+
+	const onTrashClick = () => {
+		cards.forEach(card => {
+			if(card.selected) {
+				updateCard({selected: false}, set._id, card._id);
+			};
+		});
+		toggleCardsDeletion(set._id);
+	};
 
 	const renderShuffle = () => {
 		if(cards.length > 0) {
@@ -39,7 +48,7 @@ const CardList = ({set, cards, flippedItems, fetchSet, updateSet, fetchCards, cr
 				</button>
 				<button
 					className={`ui ${deletingStyles.trashColor} button`}
-					onClick={() => updateSet({deletingCards: !set.deletingCards}, match.params.setId)}
+					onClick={() => onTrashClick()}
 				>
 					<i className="trash icon" />
 				</button>
@@ -67,4 +76,4 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-export default connect(mapStateToProps, {updateSet, fetchCards, createCard, deleteCards})(CardList);
+export default connect(mapStateToProps, {updateSet, toggleCardsDeletion, fetchCards, createCard, updateCard, deleteCards})(CardList);

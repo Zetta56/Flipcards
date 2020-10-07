@@ -4,7 +4,7 @@ const express = require("express"),
 	  Set = require("../models/Set"),
 	  Card = require("../models/Card");
 
-router.get("/", async (req, res) => {
+router.get("/", middleware.isLoggedIn, async (req, res) => {
 	try {
 		const foundSets = await Set.find({creator: req.user._id});
 		res.json(foundSets);
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 	};
 });
 
-router.post("/", async (req, res) => {
+router.post("/", middleware.isLoggedIn, async (req, res) => {
 	try {
 		// Red, blue, green, purple, pink, cyan, yellow
 		const colors = ["#e65550", "#58bbe3", "#46d568", "#9e56dd", "#e7607e", "#39c5b4", "#f7ae53"];
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
 	};
 });
 
-router.get("/:setId", async (req, res) => {
+router.get("/:setId", middleware.setAuthorized, async (req, res) => {
 	try {
 		const foundSet = await Set.findById(req.params.setId);
 		res.json(foundSet);
@@ -37,7 +37,7 @@ router.get("/:setId", async (req, res) => {
 	};
 });
 
-router.put("/:setId", async (req, res) => {
+router.put("/:setId", middleware.setAuthorized, async (req, res) => {
 	try {
 		const updatedSet = await Set.findByIdAndUpdate(req.params.setId, req.body, {new: true});
 		res.json(updatedSet);
@@ -46,7 +46,7 @@ router.put("/:setId", async (req, res) => {
 	};
 });
 
-router.delete("/:setId", async (req, res) => {
+router.delete("/:setId", middleware.setAuthorized, async (req, res) => {
 	try {
 		await Card.deleteMany({set: req.params.setId});
 		await Set.findByIdAndDelete(req.params.setId);

@@ -2,12 +2,12 @@ import React from "react";
 import {Link} from "react-router-dom"
 import {connect} from "react-redux";
 import history from "../../history";
-import {updateSet, deleteCards} from "../../actions";
+import {updateSet, toggleCardsDeletion, deleteCards} from "../../actions";
 import Modal from "../Modal";
 
-const CardDelete = ({selectedCards, updateSet, deleteCards, match}) => {
+const CardDelete = ({selectedCards, updateSet, toggleCardsDeletion, deleteCards, match}) => {
 	const onConfirmClick = () => {
-		updateSet({deletingCards: false}, match.params.setId);
+		toggleCardsDeletion(match.params.setId);
 		deleteCards(match.params.setId);
 	};
 
@@ -35,4 +35,4 @@ const CardDelete = ({selectedCards, updateSet, deleteCards, match}) => {
 	);
 };
 
-export default connect(null, {updateSet, deleteCards})(CardDelete);
+export default connect(null, {updateSet, toggleCardsDeletion, deleteCards})(CardDelete);

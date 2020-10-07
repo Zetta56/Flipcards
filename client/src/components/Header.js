@@ -5,8 +5,10 @@ import {logout, fetchSets} from "../actions";
 
 const Header = ({isLoggedIn, sets, logout, fetchSets}) => {
 	useEffect(() => {
-		fetchSets();
-	}, [fetchSets]);
+		if(isLoggedIn) {
+			fetchSets();
+		};
+	}, [fetchSets, isLoggedIn]);
 
 	const onLogoutClick = (e) => {
 		e.preventDefault();

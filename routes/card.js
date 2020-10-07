@@ -4,7 +4,7 @@ const express = require("express"),
 	  Set = require("../models/Set"),
 	  Card = require("../models/Card");
 
-router.post("/shuffle", async (req, res) => {
+router.post("/shuffle", middleware.setAuthorized, async (req, res) => {
 	try {
 		const foundCards = await Card.find({set: req.params.setId});
 		let random,
@@ -29,7 +29,7 @@ router.post("/shuffle", async (req, res) => {
 	};
 });
 
-router.get("/", async (req, res) => {
+router.get("/", middleware.setAuthorized, async (req, res) => {
 	try {
 		const foundCards = await Card.find({set: req.params.setId});
 		res.json(foundCards);
@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 	};
 });
 
-router.post("/", async (req, res) => {
+router.post("/", middleware.setAuthorized, async (req, res) => {
 	try {
 		const newCard = await Card.create({front: "Front", back: "Back", set: req.params.setId});
 		const foundSet = await Set.findById(req.params.setId);
@@ -50,16 +50,7 @@ router.post("/", async (req, res) => {
 	};
 });
 
-router.get("/:cardId", async (req, res) => {
-	try {
-		const foundCard = await Card.findById(req.params.cardId);
-		res.json(foundCard);
-	} catch(err) {
-		res.status(500).json(err);
-	};
-});
-
-router.put("/:cardId", async (req, res) => {
+router.put("/:cardId", middleware.setAuthorized, middleware.cardAuthorized, async (req, res) => {
 	try {
 		const updatedCard = await Card.findByIdAndUpdate(req.params.cardId, req.body, {new: true});
 		res.json(updatedCard);
@@ -68,7 +59,7 @@ router.put("/:cardId", async (req, res) => {
 	};
 });
 
-router.delete("/", async (req, res) => {
+router.delete("/", middleware.setAuthorized, async (req, res) => {
 	try {
 		const foundSet = await Set.findById(req.params.setId);
 		const foundCards = await Card.find({set: req.params.setId, selected: true});
