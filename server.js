@@ -70,7 +70,9 @@ app.use((req, res, next) => {
 app.use("/api/sets", setRoutes);
 app.use("/api/sets/:setId/cards", cardRoutes);
 app.use("/api", indexRoutes);
-app.use("*", express.static(path.join(__dirname, "./client/build/index.html")));
+app.use((req, res) => {
+	res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 //Start Server
 app.listen(process.env.PORT || 3001, () => {
