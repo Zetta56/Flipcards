@@ -16,7 +16,7 @@ export const fetchSets = () => {
 			});
 		} catch(err) {
 			await history.push("/sets");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -34,7 +34,7 @@ export const createSet = (formValues) => {
 			history.push("/sets");
 		} catch(err) {
 			await history.push("/sets");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -50,7 +50,7 @@ export const fetchSet = (setId) => {
 			});
 		} catch(err) {
 			await history.push("/sets");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -70,7 +70,7 @@ export const updateSet = (formValues, setId) => {
 			};
 		} catch(err) {
 			await history.push("/sets");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -88,7 +88,7 @@ export const deleteSet = (setId) => {
 			history.push("/sets");
 		} catch(err) {
 			await history.push("/sets");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };

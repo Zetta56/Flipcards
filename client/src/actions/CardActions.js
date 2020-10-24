@@ -16,7 +16,7 @@ export const fetchCards = (setId) => {
 			});
 		} catch(err) {
 			await history.push("/sets");
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -32,7 +32,7 @@ export const createCard = (setId) => {
 			});
 		} catch(err) {
 			await history.push(`/sets/${setId}`);
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -48,7 +48,7 @@ export const updateCard = (formValues, setId, cardId) => {
 			});
 		} catch(err) {
 			await history.push(`/sets/${setId}`);
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -66,7 +66,7 @@ export const deleteCards = (setId) => {
 			history.push(`/sets/${setId}`);
 		} catch(err) {
 			await history.push(`/sets/${setId}`);
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
@@ -82,7 +82,7 @@ export const shuffleCards = (setId, lastShuffle) => {
 			});
 		} catch(err) {
 			await history.push(`/sets/${setId}`);
-			await setTimeout(() => dispatch(error(err.response.data.message)), 400);
+			await dispatch(error(err.response.data.message));
 		};
 	};
 };
