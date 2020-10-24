@@ -76,6 +76,8 @@ export const shuffleCards = (setId, lastShuffle) => {
 		try {
 			const response = await axios.post(`/api/sets/${setId}/cards/shuffle`, lastShuffle || []);
 			
+			dispatch(unflipItems());
+
 			dispatch({
 				type: "SHUFFLE_CARDS",
 				payload: response.data
