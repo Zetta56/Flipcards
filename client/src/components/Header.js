@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux"
 import {Link} from "react-router-dom";
 import {logout, fetchSets} from "../actions";
+import "./Header.css";
 
 const Header = ({isLoggedIn, sets, logout, fetchSets}) => {
 	useEffect(() => {
@@ -22,14 +23,9 @@ const Header = ({isLoggedIn, sets, logout, fetchSets}) => {
 		if(isLoggedIn === null) {
 			return;
 		} else if(isLoggedIn) {
-			return <Link to="#" className="item" onClick={(e) => onLogoutClick(e)}>Logout</Link>
+			return <Link to="/login" className="item" onClick={(e) => onLogoutClick(e)}>Logout</Link>
 		} else {
-			return (
-				<React.Fragment>
-					<Link to="/login" className="item">Login</Link>
-					<Link to="/register" className="item">Sign Up</Link>
-				</React.Fragment>
-			);
+			return <Link to="/login" className="item">Login</Link>
 		};
 	};
 

@@ -2,7 +2,6 @@ import React, {useCallback} from "react";
 import {reduxForm, Field} from "redux-form";
 import {connect} from "react-redux";
 import {login} from "../../actions";
-import "./UserForm.css";
 
 const Login = ({handleSubmit, login, match}) => {
 	const renderGoogle = () => {

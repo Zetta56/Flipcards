@@ -7,6 +7,9 @@
 }
 
 .ui.green.create.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-size: 32px;
 	height: 350px;
 	line-height: 24px;
@@ -25,6 +28,7 @@
 }
 
 .setItem .front .header {
+	color: white !important;	/*white*/
 	margin-top: 25%;
 	font-size: 36px;
 	line-height: 45px;
@@ -33,12 +37,17 @@
 }
 
 .setItem .back .ui.button {
+	background-color: white;	/*white*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 50px;
 	margin-bottom: 10px;
 	width: 50px;
 }
 
 .setItem .back .icon {
+	color: #333333 !important;		/*black*/
 	font-size: 18px;
 }
 
@@ -59,7 +68,7 @@
 	}
 
 	#setsList .setItem {
-		width: 70%;
+		width: 100%;
 	}
 
 	#setsList .setItem .dropdown {

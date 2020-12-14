@@ -10,8 +10,6 @@ export default (state = [], action) => {
 			return [...state.map(set => set._id === action.payload._id ? action.payload : set)];
 		case "DELETE_SET":
 			return [...state.filter(set => set._id !== action.payload)];
-		case "TOGGLE_CARDS_DELETION":
-			return [...state.map(set => set._id === action.payload ? {...set, deletingCards: !set.deletingCards} : set)]
 		default:
 			return state;
 	};

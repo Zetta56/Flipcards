@@ -1,11 +1,16 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {updateSet, toggleCardsDeletion, fetchCards, updateCard, createCard, deleteCards} from "../../actions";
+import {fetchCards, updateCard, createCard} from "../../actions";
 import CardItem from "./CardItem";
 import "./CardList.css";
 
-const CardList = ({set, cards, flippedItems, updateSet, toggleCardsDeletion, fetchCards, createCard, updateCard, deleteCards, match}) => {
+const CardList = ({set, cards, fetchCards, createCard, updateCard, match}) => {
+	const [deleting, setDeleting] = useState(false);
+	const deletingStyles = deleting
+		? {trashColor: "gray", checkDisplay: "inline-block"}
+		: {trashColor: "red", checkDisplay: "none"};
+	
 	useEffect(() => {
 		fetchCards(match.params.setId);
 	}, [fetchCards, match]);
@@ -16,54 +21,56 @@ const CardList = ({set, cards, flippedItems, updateSet, toggleCardsDeletion, fet
 				updateCard({selected: false}, set._id, card._id);
 			};
 		});
-		toggleCardsDeletion(set._id);
+		setDeleting(!deleting);
 	};
 
-	const renderShuffle = () => {
+	const renderTopButtons = () => {
 		if(cards.length > 0) {
-			return <Link to={`/sets/${set._id}/cards/practice`} className="ui large blue button">Shuffle</Link>
+			return (
+				<span className="topButtons">
+					<button
+						className={`ui ${deletingStyles.trashColor} button`}
+						onClick={() => onTrashClick()}
+					>
+						<i className="trash icon" />
+					</button>
+					<Link
+						to={`/sets/${set._id}/cards/delete`}
+						className="ui red button"
+						style={{display: deletingStyles.checkDisplay}}
+					>
+						<i className="check icon" />
+					</Link>
+					<Link to={`/sets/${set._id}/cards/practice`} className="ui large blue button">Shuffle</Link>
+				</span>
+			);
 		};
 	};
 	
 	const renderList = () => {
 		return cards.map(card => {
-			return <CardItem set={set} card={card} flippedItems={flippedItems} key={card._id} />
+			return <CardItem set={set} card={card} deleting={deleting} key={card._id} />
 		});
 	};
 
 	if(!set) {
 		return null;
 	};
-	
-	const deletingStyles = set.deletingCards
-		? {trashColor: "gray", checkDisplay: "inline-block"}
-		: {trashColor: "red", checkDisplay: "none"}
 
 	return (
 		<div id="cardsList" style={{backgroundColor: set.color}}>
-			<h1>{set.title}</h1>
-			<div className="topButtons">
-				<button className="ui green button" onClick={() => createCard(match.params.setId)}>
-					<i className="plus icon" />Create
-				</button>
-				<button
-					className={`ui ${deletingStyles.trashColor} button`}
-					onClick={() => onTrashClick()}
-				>
-					<i className="trash icon" />
-				</button>
-				<Link
-					to={`/sets/${set._id}/cards/delete`}
-					className="ui red button"
-					style={{display: deletingStyles.checkDisplay}}
-				>
-					<i className="check icon" />
-				</Link>
-			</div>
+			<h1>
+				<span className="title">{set.title}</span>
+				{renderTopButtons()}
+			</h1>
 			<div className="ui cards">
 				{renderList()}
+				<button className="ui green create button card" onClick={() => createCard(match.params.setId)}>
+					<span>
+						<i className="plus icon" />Create
+					</span>
+				</button>
 			</div>
-			{renderShuffle()}
 		</div>
 	);
 };
@@ -71,9 +78,8 @@ const CardList = ({set, cards, flippedItems, updateSet, toggleCardsDeletion, fet
 const mapStateToProps = (state, ownProps) => {
 	return {
 		set: state.sets.filter(set => set._id === ownProps.match.params.setId)[0],
-		cards: state.cards,
-		flippedItems: state.flipped
+		cards: state.cards
 	};
 };
 
-export default connect(mapStateToProps, {updateSet, toggleCardsDeletion, fetchCards, createCard, updateCard, deleteCards})(CardList);
+export default connect(mapStateToProps, {fetchCards, createCard, updateCard})(CardList);

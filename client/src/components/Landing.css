@@ -1,3 +1,7 @@
+#landing {
+	color: white !important;	/*white*/
+}
+
 #landing .flipCard {
 	height: 500px;
 	margin: 80px auto;
@@ -6,12 +10,12 @@
 
 #landing .front {
 	font-size: 56px;
-	letter-spacing: 4px;
+	letter-spacing: 2px;
 }
 
 #landing .back {
 	font-size: 36px;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	line-height: 50px;
 }
 

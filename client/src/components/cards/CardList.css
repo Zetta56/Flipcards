@@ -1,4 +1,5 @@
 #cardsList {
+	color: white !important;	/*white*/
 	padding: 30px;
 }
 
@@ -7,19 +8,20 @@
 	padding-bottom: 10px;
 }
 
-.topButtons {
-	margin: 20px 0;
+#cardsList .title {
+	display: inline-block;
+	margin-bottom: 10px;
+	word-wrap: break-word;
+	width: 100%;
 }
 
-.topButtons .ui.button {
+#cardsList .topButtons {
+	display: block;
+}
+
+#cardsList .topButtons .ui.button {
 	font-size: 16px;
 	margin-right: 10px;
-}
-
-#cardsList .ui.blue.button {
-	display: block;
-	width: 120px;
-	margin: 10px 1.5% 0 auto;
 }
 
 #cardsList .ui.cards {
@@ -27,6 +29,9 @@
 }
 
 #cardsList .ui.cards > .card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	box-shadow: none;
 	font-size: 20px;
 	height: 230px;
@@ -35,7 +40,18 @@
 	width: 30%;
 }
 
+.card .ui.orange.button {
+	position: absolute;
+	background-color: #e07b26;		/*orange*/
+	right: 0;
+	top: 0;
+	margin: 0;
+	font-size: 20px;
+	padding: 6px 6px 6px 10px;
+}
+
 .card .ui.checkbox {
+	position: absolute;
 	left: 10px;
 	top: calc(50% - 8px);
 	z-index: 1;
@@ -48,17 +64,9 @@
 }
 
 @media only screen and (max-width: 1200px) {
-	#cardsList .ui.blue.button {
-		margin-right: 4%;
-	}
-
 	#cardsList .ui.cards > .card {
 		width: 40%;
 		margin: 20px 5%;
-	}
-
-	.flipCard .ui.button {
-		right: -4px;
 	}
 }
 

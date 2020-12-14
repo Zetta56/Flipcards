@@ -1,0 +1,30 @@
+#header {
+	position: relative;
+	border: 0;
+	font-size: 18px;
+	letter-spacing: .12rem;
+	z-index: 1;
+}
+
+#header .menu {
+	margin-top: 0;
+}
+
+#header .menu .item {
+	max-width: 300px;
+	overflow: hidden;
+}
+
+#header .item:not(.dropdownItem) {
+	color: white !important;	/*white*/
+}
+
+#header .item:not(.dropdownItem):hover {
+	background-color: #7dc8cf !important;
+}
+
+@media only screen and (max-width: 768px) {
+	#header .dropdown {
+		display: none;
+	}
+}

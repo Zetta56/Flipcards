@@ -1,0 +1,38 @@
+
+.flipCard {
+	cursor: pointer;
+	height: 100%;
+    width: 100%;
+    text-align: center;
+	transition: transform 700ms;
+	transform-style: preserve-3d;	/*calculates post-rotation position*/
+}
+
+.flipCard > * {
+    position: absolute;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	backface-visibility: hidden;	/*hides flipped after-image*/
+	border-radius: .3rem;
+	padding: 30px 35px;
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.flipCard > *::-webkit-scrollbar {
+	display: none;
+} 
+
+.flipCard .back {
+	transform: rotateX(180deg);
+}
+
+.flipped {
+	transform: rotateX(180deg);	
+}

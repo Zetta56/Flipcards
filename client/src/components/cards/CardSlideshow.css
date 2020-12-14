@@ -1,23 +1,26 @@
 #cardSlideshow {
+	color: white !important;	/*white*/
 	padding: 30px;
 }
 
 #cardSlideshow > h1 {
 	border-bottom: 1px solid lightgray;
 	padding-bottom: 10px;
+	word-wrap: break-word;
 }
 
-#cardSlideshow > .ui.button {
+#cardSlideshow h1 .ui.button {
 	font-size: 16px;
-	margin: 8px 0 20px 0;
+	margin: 10px 15px 10px 0;
 	padding: 10px 15px;
 }
 
-.react-slideshow-container {
+#cardSlideshow .react-slideshow-container {
+	margin: 0 auto;
 	width: 70%;
 }
 
-.images-wrap > div {
+#cardSlideshow .images-wrap > div {
 	overflow: hidden;
 }
 
@@ -29,6 +32,13 @@
 .slide .body {
 	width: 100%;
 	word-wrap: break-word;
+}
+
+.slide.last {
+	background-color: gray;	/*light-gray*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .slide.last .ui.button {

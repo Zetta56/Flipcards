@@ -2,12 +2,12 @@ import React, {useEffect, useRef} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {Slide} from "react-slideshow-image";
-import {updateCard, shuffleCards} from "../../actions";
+import {shuffleCards} from "../../actions";
 import CardSlide from "./CardSlide";
 import "react-slideshow-image/dist/styles.css";
 import "./CardSlideshow.css";
 
-const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, match}) => {
+const CardSlideshow = ({cards, set, shuffleCards, match}) => {
 	const slidesRef = useRef(null);
 
 	useEffect(() => {
@@ -21,7 +21,7 @@ const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, matc
 
 	const renderSlideItems = () => {
 		const slides = cards.map(card => {
-			return <CardSlide card={card} set={set} flippedItems={flippedItems} key={card._id} />
+			return <CardSlide card={card} key={card._id} />
 		});
 		//Adds reshuffle slide to the end
 		slides.push(
@@ -41,8 +41,12 @@ const CardSlideshow = ({cards, set, flippedItems, updateCard, shuffleCards, matc
 
 	return (
 		<div id="cardSlideshow" style={{backgroundColor: set.color}}>
-			<h1>{set.title}</h1>
-			<Link to={`/sets/${set._id}`} className="ui button"><i className="angle left icon" />Back</Link>
+			<h1>
+				<Link to={`/sets/${set._id}`} className="ui button">
+					<i className="angle left icon" />Back
+				</Link>
+				<span>{set.title}</span>
+			</h1>
 			<Slide ref={slidesRef} autoplay={false} infinite={false} easing={"ease"} transitionDuration={250}>
 				{renderSlideItems()}
 			</Slide>
@@ -58,4 +62,4 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-export default connect(mapStateToProps, {updateCard, shuffleCards})(CardSlideshow);
+export default connect(mapStateToProps, {shuffleCards})(CardSlideshow);

@@ -2,7 +2,6 @@ import React, {useCallback} from "react";
 import {reduxForm, Field} from "redux-form";
 import {connect} from "react-redux";
 import {createUser} from "../../actions";
-import "./UserForm.css";
 
 const Register = ({handleSubmit, createUser}) => {
 	const renderError = ({touched, error}) => {
@@ -31,7 +30,7 @@ const Register = ({handleSubmit, createUser}) => {
 					<Field name="username" component={renderInput} placeholder="Username" inputType="text" />
 					<Field name="password" component={renderInput} placeholder="Password" inputType="password" />
 					<Field name="confirmPassword" component={renderInput} placeholder="Confirm Password" inputType="password" />
-					<button className="ui green submit button" id="submitButton">Create</button>
+					<button className="ui blue submit button" id="submitButton">Create</button>
 				</form>
 			</div>
 		</div>

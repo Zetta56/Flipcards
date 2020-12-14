@@ -14,9 +14,9 @@ export const createUser = (formValues) => {
 	};
 };
 
-export const login = (formValues) => {
+export const login = (formValues, initial) => {
 	//Accessed on initial app render
-	if(!formValues.password && !formValues.googleToken) {
+	if(initial) {
 		return {
 			type: "LOGIN",
 			payload: formValues
@@ -48,9 +48,5 @@ export const logout = (initial) => {
 		dispatch({
 			type: "LOGOUT",
 		});
-
-		if(!initial) {
-			history.push("/login");
-		};
 	};
 };

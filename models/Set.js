@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const setSchema = new mongoose.Schema({
 	title: String,
 	color: String,
-	deletingCards: {type: Boolean, default: false},
 	cards: [
 		{
 			type: mongoose.Schema.Types.ObjectId,

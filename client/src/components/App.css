@@ -1,168 +1,35 @@
+body {
+	background-color: #96dae0;	/*cyan*/
+}
+
 .ui.main.container {
 	padding-top: 40px;
 }
 
-/*Header*/
-#header {
-	position: relative;
-	border: 0;
-	font-size: 18px;
-	letter-spacing: .12rem;
-	z-index: 1;
-}
-
-#header .ui.container > .item:hover {
-	background-color: #ea7062 !important;
-}
-
-#header .menu {
-	margin-top: 0;
-}
-
-.icon:not(.plus) {
-	margin: 0 !important;
-}
-
-/*FlipCards*/
-.flipCard {
-	cursor: pointer;
-	height: 100%;
-	width: 100%;
-	transition: transform 700ms;
-	transform-style: preserve-3d;	/*calculates post-rotation position*/
-}
-
-.flipCard > * {
-	flex-wrap: wrap;
-	backface-visibility: hidden;	/*hides flipped after-image*/
-	border-radius: .3rem;
-	padding: 30px 35px;
-	height: 100%;
-	width: 100%;
-}
-
-.flipCard .back {
-	transform: rotateX(180deg);
-}
-
-.flipCard .ui.orange.button {
-	right: -3px;
-	top: 0;
-	padding: 6px 6px 6px 10px;
-}
-
-.flipCard .exchange.icon {
-	font-size: 20px;
-}
-
-.flipped {
-	transform: rotateX(180deg);	
-}
-
-/*Common Styles*/
-.flipCard > *,
-#setsList .ui.green.create.button,
-.setItem .back .ui.button,
-.slide.last  {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.ui.stackable.grid > .column,
-.column .ui.form .field,
-.setItem .front .ui.blue.button,
-.react-slideshow-container {
-	margin: 0 auto;
-}
-
-.flipCard > *,
-.flipCard .ui.orange.button,
-.ui.pointing.label,
-.card .ui.checkbox {
-	position: absolute;
-}
-
-.flipCard,
-.ui.negative.message,
-.column h2,
-.setItem .front .header {
+.ui.negative.message {
 	text-align: center;
-}
-
-
-/*Colors*/
-#setsList .card,
-#cardsList .ui.cards > .card {
-	background: transparent;	/*transparent*/
-}
-
-body {
-	background-color: #fa8072;	/*light-red*/
-}
-
-.register .ui.label,
-#modalDelete.ui.modal,
-#modalDelete.ui.modal > * {
-	background-color: #e65550;		/*red*/
-}
-
-#modalUpdate.ui.modal,
-#modalUpdate.ui.modal > * {
-	background-color: #df994e;		/*light-orange*/
-}
-
-.ui.orange.button:not(:hover) {
-	background-color: #e07b26;		/*orange*/
-}
-
-#landing .flipCard > * {
-	background-color: #f7708e;	/*pink*/
-}
-
-.login {
-	background-color: #58bbe3;		/*light-blue*/
 }
 
 .ui.blue.button:not(:hover) {
 	background-color: #429bd8;		/*blue*/
 }
 
-.register,
-#setsList .ui.green.button:not(:hover),
-#modalCreate.ui.modal,
-#modalCreate.ui.modal > * {
-	background-color: #57dc77;		/*light-green*/
-}
-
 .ui.green.button:not(:hover) {
 	background-color: #33b23c;		/*green*/
 }
 
-#landing,
-#header a:not(.dropdownItem),
-.login h2,
-.register h2,
-.register .ui.label,
-#setsList .plus.icon,
-#setsList .header,
-.modal .header,
-.modal .content,
-.modal label,
-#cardsList,
-#cardSlideshow {
-	color: white !important;	/*white*/
+.ui.create.button:not(:hover) {
+	background-color: #57ce73;		/*light-green*/
 }
 
-.setItem .back .ui.button:not(:hover) {
-	background-color: white;	/*white*/
+.card:not(.create) {
+	background-color: transparent !important;
 }
 
-#cardSlideshow .slide.last {
-	background-color: gray;	/*light-gray*/
+.icon:not(.plus) {
+	margin: 0 !important;
 }
 
-.setItem .back .icon,
-.ui.active.modal a {
-	color: #333333 !important;		/*black*/
+a {
+	outline: none;
 }

@@ -1,23 +1,36 @@
 import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchSets, flipItem} from "../../actions";
+import {fetchSets, createSet, updateSet} from "../../actions";
+import FlipCard from "../FlipCard";
+import ContentEditable from "react-contenteditable";
 import "./SetList.css";
 
-const SetsList = ({sets, flippedItems, fetchSets, flipItem}) => {
+const SetsList = ({sets, fetchSets, createSet, updateSet}) => {
 	useEffect(() => {
 		fetchSets();
 	}, [fetchSets]);
 
+	const onEditableKeyPress = (e, set) => {
+		if(e.which === 13) {
+			updateSet({title: e.target.textContent || "Set"}, set._id)
+		};
+	};
+
 	const renderList = () => {
 		return sets.map(set => {
-			let flipped = flippedItems.includes(set._id) ? "flipped" : "";
-
 			return (
 				<div className="setItem card" key={set._id}>
-					<div className={`${flipped} flipCard`}>
-						<div className="front" style={{backgroundColor: set.color}} onClick={() => flipItem(set._id)}>
-							<div className="header">{set.title}</div>
+					<FlipCard name={set._id} backgroundColor={set.color}>
+						<React.Fragment>
+							<ContentEditable
+								className="header"
+								html={set.title}
+								disabled={false}
+								spellCheck={false}
+								onClick={e => e.stopPropagation()}
+								onKeyPress={e => onEditableKeyPress(e, set)}
+								onBlur={e => updateSet({title: e.target.textContent}, set._id)} />
 							<Link 
 								to={`/sets/${set._id}`}
 								onClick={(e) => e.stopPropagation()}
@@ -25,18 +38,13 @@ const SetsList = ({sets, flippedItems, fetchSets, flipItem}) => {
 							>
 								Practice
 							</Link>
+						</React.Fragment>
+						<div onClick={(e) => e.stopPropagation()}>
+							<Link to={`/sets/${set._id}/delete`} className="ui circular button">
+								<i className="trash icon" />
+							</Link>
 						</div>
-						<div className="back" style={{backgroundColor: set.color}} onClick={() => flipItem(set._id)}>
-							<div onClick={(e) => e.stopPropagation()}>
-								<Link to={`/sets/${set._id}/edit`} className="ui circular button">
-									<i className="pencil alternate icon" />
-								</Link>
-								<Link to={`/sets/${set._id}/delete`} className="ui circular button">
-									<i className="trash icon" />
-								</Link>
-							</div>
-						</div>
-					</div>
+					</FlipCard>
 				</div>
 			);
 		});
@@ -46,16 +54,20 @@ const SetsList = ({sets, flippedItems, fetchSets, flipItem}) => {
 		<div id="setsList">
 			<div className="ui cards">
 				{renderList()}
-					<Link to="/sets/create" className="ui green create button setItem">
-						<i className="plus icon" />Create
-					</Link>
+				<button 
+					type="button" 
+					className="ui green create button setItem" 
+					onClick={() => createSet({title: "Set"})}
+				>
+					<i className="plus icon" />Create
+				</button>
 			</div>
 		</div>
 	);
 };
 
 const mapStateToProps = (state) => {
-	return {sets: state.sets, flippedItems: state.flipped};
+	return {sets: state.sets};
 };
 
-export default connect(mapStateToProps, {fetchSets, flipItem})(SetsList);
+export default connect(mapStateToProps, {fetchSets, createSet, updateSet})(SetsList);

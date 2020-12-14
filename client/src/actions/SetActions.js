@@ -92,10 +92,3 @@ export const deleteSet = (setId) => {
 		};
 	};
 };
-
-export const toggleCardsDeletion = (setId) => {
-	return {
-		type: "TOGGLE_CARDS_DELETION",
-		payload: setId
-	};
-};

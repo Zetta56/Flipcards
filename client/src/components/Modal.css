@@ -2,17 +2,18 @@
 	padding: 10px 20px 0 20px;
 }
 
-.ui.active.modal .header,
-.ui.active.modal .actions {
-	border: none;
+.ui.active.modal *:not(a):not(input) {
+	color: white !important;	/*white*/
 }
 
 .ui.active.modal .header {
+	border: none;
 	font-size: 24px;
 	padding-bottom: 0;
 }
 
 .ui.active.modal .content {
+	border: none;
 	font-size: 18px;
 }
 
@@ -26,4 +27,9 @@
 	font-size: 15px;
 	height: 40px;
 	vertical-align: top;
+}
+
+#modalDelete,
+#modalDelete > * {
+	background-color: #eb706c;		/*red*/
 }

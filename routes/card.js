@@ -7,9 +7,7 @@ const express = require("express"),
 router.post("/shuffle", middleware.setAuthorized, async (req, res) => {
 	try {
 		const foundCards = await Card.find({set: req.params.setId});
-		let random,
-			temp, 
-			diff = false;
+		let random, temp, diff = false;
 		while(!diff) {
 			for(i = foundCards.length - 1; i >= 0; i--) {
 				//Swaps random card with last card (Fisher-Yates Shuffle)
@@ -40,7 +38,7 @@ router.get("/", middleware.setAuthorized, async (req, res) => {
 
 router.post("/", middleware.setAuthorized, async (req, res) => {
 	try {
-		const newCard = await Card.create({front: "Front", back: "Back", set: req.params.setId});
+		const newCard = await Card.create({front: "front", back: "back", set: req.params.setId});
 		const foundSet = await Set.findById(req.params.setId);
 		foundSet.cards.push(newCard._id);
 		foundSet.save();
