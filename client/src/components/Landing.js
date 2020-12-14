@@ -10,7 +10,7 @@ const Landing = () => {
 				<span>FlipCards</span>
 				<span>
 					<div>A straightforward flash card site designed for studying.</div>
-					<Link to="/register" className="ui huge blue button">Get Started</Link>
+					<Link to="/login" className="ui huge blue button">Get Started</Link>
 				</span>
 			</FlipCard>
 		</div>
