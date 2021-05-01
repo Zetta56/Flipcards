@@ -1,4 +1,7 @@
 # Flipcards
+
+![Cards](/docs/images/cards.PNG)
+
 A minimalist flash card website designed for studying, built with the MERN stack.
 
 # Requirements
