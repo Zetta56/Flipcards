@@ -28,11 +28,11 @@ You must have the following installed:
 
 4. Start your server with either `node server.js` or `npm start`.
 
-OPTIONAL: Enable Google OAuth 2.0 by adding the following environment variables:
-    ```
-    GOOGLE_CLIENTID=/*Your oauth client id*/
-    REACT_APP_GOOGLE_CLIENTID=/*Your oauth client id*/
-    ```
+**Optional - Enable Google OAuth 2.0 by adding the following environment variables, in addition to the variables above:**
+  ```
+  GOOGLE_CLIENTID=/*Your oauth client id*/
+  REACT_APP_GOOGLE_CLIENTID=/*Your oauth client id*/
+  ```
     
    In order to obtain an oauth client id, you can follow these [instructions](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow), specifically in the Prerequisites section.
    
